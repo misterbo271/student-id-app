@@ -4,7 +4,17 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {WebView} from 'react-native-webview';
 import RootNavigation from 'screens/RootNavigation';
 import {HeaderBackButton} from '@react-navigation/elements';
-import {CBButton, CBContainer, CBDivider, CBIcon, CBImage, CBMenu, CBText, CBTouchableOpacity, CBView} from 'components';
+import {
+    CBButton,
+    CBContainer,
+    CBDivider,
+    CBIcon,
+    CBImage,
+    CBMenu,
+    CBText,
+    CBTouchableOpacity,
+    CBView
+} from 'components';
 import CBConstant from 'constants/CBConstant';
 import EventTracker from 'controls/EventTracker';
 import CBControl from 'controls/CBControl';
@@ -12,7 +22,6 @@ import CBHandler from 'handlers/CBHandler';
 import ImageUtil from 'utils/ImageUtil';
 import {Position} from 'react-native-enhanced-popup-menu';
 import Orientation from 'react-native-orientation';
-import * as Progress from 'react-native-progress';
 import Toast from 'react-native-simple-toast';
 import Share from 'react-native-share';
 import {moderateScale} from 'utils/ThemeUtil';

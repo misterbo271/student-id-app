@@ -1,7 +1,17 @@
 import React from 'react';
 import RootNavigation from 'screens/RootNavigation';
 import {Keyboard} from 'react-native';
-import {CBAction, CBButton, CBCodeInput, CBContainer, CBIcon, CBText, CBTouchableOpacity, CBTouchableWithoutFeedback, CBView} from 'components';
+import {
+    CBAction,
+    CBButton,
+    CBCodeInput,
+    CBContainer,
+    CBIcon,
+    CBText,
+    CBTouchableOpacity,
+    CBTouchableWithoutFeedback,
+    CBView
+} from 'components';
 import CBConstant from 'constants/CBConstant';
 import FirebaseAuth from 'services/FirebaseAuth';
 import PhoneNumberUtil from 'utils/PhoneNumberUtil';

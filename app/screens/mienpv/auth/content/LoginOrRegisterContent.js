@@ -1,13 +1,5 @@
-import React, {Fragment, useRef, useState} from 'react';
-import {Keyboard, Platform} from "react-native";
-import {
-    CBAction,
-    CBAvatar, CBButton,
-    CBContainer, CBHeader, CBIcon, CBImage, CBInput,
-    CBScrollView,
-    CBText, CBTouchableOpacity,
-    CBTouchableWithoutFeedback, CBView
-} from 'components';
+import React, {useRef} from 'react';
+import {CBAction, CBAvatar, CBButton, CBContainer, CBInput, CBText, CBView} from 'components';
 import ResetWalletPopup from 'screens/popup/ResetWalletPopup';
 import {useTheme} from 'react-native-elements';
 import dimens from "configs/dimens";

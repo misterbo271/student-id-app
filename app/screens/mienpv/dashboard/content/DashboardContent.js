@@ -1,21 +1,12 @@
-import React, {Fragment, useRef, useState} from 'react';
-import {Keyboard, Platform} from "react-native";
-import {
-    CBAvatar,
-    CBContainer, CBHeader, CBIcon, CBImage,
-    CBScrollView,
-    CBText, CBTouchableOpacity,
-    CBTouchableWithoutFeedback, CBView
-} from 'components';
+import React, {Fragment} from 'react';
+import {CBAvatar, CBContainer, CBHeader, CBIcon, CBImage, CBText, CBTouchableOpacity, CBView} from 'components';
 import {useTheme} from 'react-native-elements';
 import {appStyles} from "configs/styles";
 import colors from "configs/colors";
-import CardView from "react-native-cardview";
 import {moderateScale} from "utils/ThemeUtil";
 import ImageUtil from "utils/ImageUtil";
 import dimens from "configs/dimens";
 import QRCode from "react-native-qrcode-svg";
-import Barcode from "react-native-barcode-builder";
 
 const DashboardContent = ({onLogin}) => {
 

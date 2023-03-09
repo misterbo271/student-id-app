@@ -1,5 +1,5 @@
 import {Dimensions, Platform} from 'react-native';
-import {ifIphoneX, getBottomSpace, getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {getBottomSpace, getStatusBarHeight, ifIphoneX} from 'react-native-iphone-x-helper';
 import DeviceInfo from 'react-native-device-info';
 
 const {width, height} = Dimensions.get('window');

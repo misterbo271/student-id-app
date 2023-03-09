@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import SplashScreen from "react-native-splash-screen";
 import Tracking from "screens/Tracking";
 import IdentityContent from "screens/mienpv/identity/content/IdentityContent";

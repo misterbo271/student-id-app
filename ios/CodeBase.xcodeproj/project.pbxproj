@@ -13,6 +13,7 @@
 		213F29FAC1C4456A9E2418ED /* GoogleSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B16305EDB7C54AFABDA62C69 /* GoogleSans-Bold.ttf */; };
 		37DF1B9B9E334454849BE764 /* GoogleSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DFA03DE2D8547508A37ACCB /* GoogleSans-BoldItalic.ttf */; };
 		4C196D68E9374736A50463EA /* GoogleSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28BC5E6A5DCA4363A2524294 /* GoogleSans-MediumItalic.ttf */; };
+		580FD8DC946259E91EEB1C05 /* libPods-CodeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CE09E2C0FA7EE8A1393D5 /* libPods-CodeBase.a */; };
 		780FEEA8261EE2120051B4EB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780FEEA7261EE2120051B4EB /* File.swift */; };
 		781D00B5261A0F6D00B4DF55 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 781D00B4261A0F6C00B4DF55 /* AppCenter-Config.plist */; };
 		786B8D40261D8EAA00D1DEDB /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B8D3F261D8EAA00D1DEDB /* NotificationService.m */; };
@@ -24,7 +25,6 @@
 		78D6CC3F261829F2004130DE /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D6CC37261829F2004130DE /* DeviceUtil.m */; };
 		78D6CC40261829F2004130DE /* NSUserDefaults+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D6CC3A261829F2004130DE /* NSUserDefaults+Helper.m */; };
 		78E37F5A261D5CBB000ADF21 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78E37F59261D5CBA000ADF21 /* GoogleService-Info.plist */; };
-		7ACC90E222EEDA4F61720B85 /* libPods-CodeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CE09E2C0FA7EE8A1393D5 /* libPods-CodeBase.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		84BA164DC3024EDA9BD34AE8 /* GoogleSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37D343CECC174C3DBFF7E6BF /* GoogleSans-Italic.ttf */; };
 		9B6457EB75A24125861FC74C /* GoogleSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5D8DBBA6A40425A88C8B025 /* GoogleSans-LightItalic.ttf */; };
@@ -119,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ACC90E222EEDA4F61720B85 /* libPods-CodeBase.a in Frameworks */,
+				580FD8DC946259E91EEB1C05 /* libPods-CodeBase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
