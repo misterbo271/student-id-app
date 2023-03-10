@@ -42,7 +42,7 @@ const FormikInput = () => {
     )
 }
 
-const LoginOrRegisterContent = ({onLogin}) => {
+const LoginOrRegisterContent = () => {
 
     const {theme} = useTheme();
     const resetWalletPopupRef = useRef();
@@ -57,7 +57,7 @@ const LoginOrRegisterContent = ({onLogin}) => {
                 <CBAvatar
                     size={100}
                     source={require('../../../../assets/images/fennec_chibi.jpeg')}
-                    containerStyle={{marginTop: 20, marginLeft: dimens.widthScreen / 2 - 84, borderRadius: 30}}
+                    containerStyle={{justifyContent: 'center', alignSelf: 'center'}}
                 />
                 <CBText style={[appStyles.heading, {marginTop: 50, alignSelf: 'center'}]}>Chào mừng quay trở lại</CBText>
                 <CBView>

@@ -53,7 +53,7 @@ const ResetWalletPopup = ({style, onAction}, ref) => {
     };
 
     const onAuthScreen = () => {
-        RootNavigation.navigate('AuthScreen');
+        RootNavigation.navigate('Authentication');
         hide();
     }
 

@@ -21,12 +21,15 @@ export default class RootNavigation {
         return name;
     }
 
+    // static navigate(...args) {
+    //     if (this.screens.includes(args[0])) {
+    //         this.navigation.navigate(...args);
+    //     } else {
+    //         this.navigation.navigate('Empty');
+    //     }
+    // }
     static navigate(...args) {
-        if (this.screens.includes(args[0])) {
-            this.navigation.navigate(...args);
-        } else {
-            this.navigation.navigate('Empty');
-        }
+        this.navigation.navigate(...args);
     }
 
     static push(...args) {

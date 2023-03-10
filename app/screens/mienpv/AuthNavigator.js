@@ -8,7 +8,9 @@ import {appStyles} from 'configs/styles';
 import colors from 'configs/colors';
 import dimens from 'configs/dimens';
 
-import LoginOrRegister from "screens/mienpv/auth/LoginOrRegister";
+import LoginOrRegister from 'screens/mienpv/auth/LoginOrRegister';
+import Authentication from 'screens/mienpv/auth/Authentication';
+import Register from 'screens/mienpv/auth/Register';
 import {strings} from "controls/i18n";
 
 const Stack = createStackNavigator();
@@ -48,6 +50,8 @@ export const AuthStack = () => {
                 }
             }}>
             <Stack.Screen name={'LoginOrRegister'} component={LoginOrRegister} options={{title: strings('screen_login')}}/>
+            <Stack.Screen name={'Authentication'} component={Authentication} options={{title: strings('screen_login')}}/>
+            <Stack.Screen name={'Register'} component={Register} options={{title: strings('screen_login')}}/>
         </Stack.Navigator>
     );
 }

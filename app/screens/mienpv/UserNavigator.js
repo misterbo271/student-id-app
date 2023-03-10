@@ -11,7 +11,6 @@ import Home from 'screens/mienpv/home/Home';
 import Web from 'screens/Web';
 import Empty from 'screens/Empty';
 import Introduction from 'screens/mienpv/auth/Introduction';
-import LoginOrRegister from 'screens/mienpv/auth/LoginOrRegister';
 import Verify from 'screens/mienpv/auth/Verify';
 import Dashboard from "screens/mienpv/dashboard/Dashboard";
 import Profile from "screens/mienpv/profile/Profile";
@@ -51,7 +50,6 @@ export const UserStack = () => {
             <Stack.Screen name={'Web'} component={Web} options={{title: strings('screen_web')}}/>
             <Stack.Screen name={'Empty'} component={Empty} options={{title: strings('screen_empty')}}/>
             <Stack.Screen name={'Introduction'} component={Introduction} options={{...TransitionPresets.ModalSlideFromBottomIOS, headerShown: false}}/>
-            <Stack.Screen name={'LoginOrRegister'} component={LoginOrRegister} options={{...TransitionPresets.ModalSlideFromBottomIOS, headerShown: false}}/>
             <Stack.Screen name={'Verify'} component={Verify} options={{headerShown: false}}/>
             <Stack.Screen name={'Dashboard'} component={Dashboard} options={{headerShown: false}}/>
             <Stack.Screen name={'Profile'} component={Profile} options={{headerShown: false}}/>
