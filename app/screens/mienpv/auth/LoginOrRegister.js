@@ -1,4 +1,8 @@
 import React from 'react';
+import {Alert} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppStore from 'stores/AppStore';
+
 import LoginOrRegisterContent from 'screens/mienpv/auth/content/LoginOrRegisterContent';
 
 import Base from 'screens/Base';
@@ -17,9 +21,30 @@ export default class LoginOrRegister extends Base {
         super.componentWillUnmount();
     }
 
+    onLogin = async (values) => {
+        try {
+            const value = await AsyncStorage.getItem('password')
+            const value1 = await AsyncStorage.getItem('srp')
+            console.log(`mienpv :: ${JSON.stringify(value)}`);
+            console.log(`mienpv :: ${JSON.stringify(value1)}`);
+            if(values.password === value) {
+                //RootNavigation.navigate('Home');
+                AppStore.setMode('User');
+            }
+            else {
+                Alert.alert(
+                    'Fail!',
+                    `User has unsuccessfully signed in!`,
+                );
+            }
+        } catch(e) {
+            // error reading value
+        }
+    };
+
     render() {
         return (
-            <LoginOrRegisterContent/>
+            <LoginOrRegisterContent onLogin={this.onLogin}/>
         );
     }
 }
