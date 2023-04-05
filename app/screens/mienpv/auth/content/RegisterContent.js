@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {CBAction, CBBoxInput, CBButton, CBContainer, CBIcon, CBInput, CBText, CBTouchableOpacity, CBTouchableWithoutFeedback, CBView} from 'components';
 import {Keyboard} from 'react-native';
 import {appStyles} from 'configs/styles';
@@ -11,11 +11,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigation from 'screens/RootNavigation';
 
 const FormikPassword = ({initialValues, onConfirmPassword}) => {
+    const formikRef = useRef(null);
+
     const validationSchema = yup.object({
-        password: yup.string()
-            .required('Vui lòng điền mật khẩu'),
-        confirmPassword: yup.string()
-            .required('Vui lòng xác nhận mật khẩu')
+        password: yup
+            .string()
+            .required('Vui lòng điền mật khẩu.')
+            .min(8, 'Vui lòng nhập mật khẩu hơn 8 ký tư.'),
+        confirmPassword: yup
+            .string()
+            .required('Vui lòng nhập lại mật khẩu.')
+            .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không trùng khớp.')
     });
 
     const [togglePassword, setTogglePassword] = useState(true);
@@ -24,8 +30,14 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
         setTogglePassword(!togglePassword);
     };
 
+    const onFieldFocus = (name) => () => {
+        formikRef.current.setFieldError(name, '');
+    };
+
+
     return (
         <Formik
+            innerRef={formikRef}
             initialValues={initialValues}
             validationSchema={validationSchema}
             validateOnChange={false}
@@ -43,8 +55,9 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
                             secureTextEntry={!togglePassword}
                             maxLength={64}
                             value={values.password}
-                            error={errors.password}
+                            errorMessage={errors.password}
                             onChangeText={handleChange('password')}
+                            onFocus={onFieldFocus('password')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBInput
@@ -54,8 +67,9 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
                             autoCapitalize={'none'}
                             maxLength={64}
                             value={values.confirmPassword}
-                            error={errors.confirmPassword}
+                            errorMessage={errors.confirmPassword}
                             onChangeText={handleChange('confirmPassword')}
+                            onFocus={onFieldFocus('confirmPassword')}
                             onSubmitEditing={handleSubmit}
                         />
                         {values.password && values.password.length > 0 ? <CBAction style={{marginTop: 10, alignSelf: 'flex-end'}} title={!togglePassword ? strings('action_show_password') : strings('action_hide_password')} onPress={onTogglePassword}/> : null}
