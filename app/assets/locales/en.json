@@ -8,6 +8,8 @@
   "action_terms_and_conditions": "Điều khoản và Điều kiện",
   "action_show_password": "Hiện mật khẩu",
   "action_hide_password": "Ẩn mật khẩu",
+  "action_setting": "Cài đặt",
+  "action_logout": "Đăng xuất",
   "NO": "Không",
   "no_really": "Không",
   "account": "Tài khoản",
@@ -88,6 +90,7 @@
   "text_confirm_srp": "Xác nhận Secret\nRecovery Phrase",
   "text_my_school": "Trường học của tôi",
   "text_confirm_reset_wallet": "Bạn có chắc chắn muốn xóa ví của mình không?",
+  "text_align_qr_code": "Canh chỉnh mã trong vùng quét",
 
   "screen_empty": "Code Base",
   "screen_web": "",

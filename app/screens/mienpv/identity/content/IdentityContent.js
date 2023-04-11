@@ -49,14 +49,13 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
                     <CBView style={{marginTop: 50}}>
                         <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', alignSelf: 'center'}]}>Mien PV</CBText>
                     </CBView>
-                    <CBView style={{padding: 40}}>
-                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.secondaryDarkColor, borderRadius: 20, marginTop: 15}]} title={'Ma QR cua ban o day'}/>
-                    </CBView>
-                    {/*<CBText style={{alignSelf: 'center'}}>Ahihihihhi</CBText>*/}
-                    <CBView style={{alignSelf: 'center', padding: 15}} define={'none'}>
+                    <CBView style={{alignSelf: 'center', padding: 15, marginTop: 40}} define={'none'}>
                         <QRCode
                             value={'http://onelink.to/99bxau'}
                             size={200}/>
+                    </CBView>
+                    <CBView style={{padding: 40}}>
+                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.secondaryDarkColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'}/>
                     </CBView>
                 </CBView>
             </CBView>

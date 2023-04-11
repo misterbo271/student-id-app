@@ -10,6 +10,8 @@
   "action_agree_reset_wallet": "Tôi đồng ý",
   "action_show_password": "Hiện mật khẩu",
   "action_hide_password": "Ẩn mật khẩu",
+  "action_setting": "Cài đặt",
+  "action_logout": "Đăng xuất",
   "NO": "Không",
   "no_really": "Không",
   "account": "Tài khoản",
@@ -99,6 +101,7 @@
   "text_cannot_login_2": "ví hiện tại của bạn và cài một ví mới khác.",
   "text_confirm_reset_wallet_1": "Bạn có chắc chắn muốn xóa",
   "text_confirm_reset_wallet_2": "ví của mình không?",
+  "text_align_qr_code": "Canh chỉnh mã trong vùng quét",
 
   "screen_empty": "Code Base",
   "screen_web": "",

@@ -156,7 +156,7 @@ export default class ScanIdentity extends ScanQRCode {
             <CBView style={[appStyles.footer, {paddingBottom: dimens.bottomSpace}]} define={'footer'}>
                 <CBTouchableOpacity style={[appStyles.center, {height: 'auto'}]} define={'none'}>
                     <CBIcon containerStyle={{marginBottom: 5}} type={'font-awesome'} name={'ticket'} color={index === 0 ? theme.colors.primary : '#999999'} size={20}/>
-                    <CBText style={[appStyles.blockquote, {color: index === 0 ? theme.colors.primary : '#999999', fontFamily: 'GoogleSans-Light'}]} define={'none'}>{strings('action_finding')}</CBText>
+                    <CBText style={[appStyles.blockquote, {color: index === 0 ? theme.colors.primary : '#999999', fontFamily: 'GoogleSans-Light'}]} define={'none'}>{'Quét mã'}</CBText>
                 </CBTouchableOpacity>
             </CBView>
         );

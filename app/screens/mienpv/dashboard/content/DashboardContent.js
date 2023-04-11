@@ -35,7 +35,7 @@ const DashboardContent = ({onLogin}) => {
                     <CBIcon type={'ionicon'} name={'search-outline'} define={'icon'} size={24}/>
                 </CBTouchableOpacity>
                 <CBTouchableOpacity style={[appStyles.action, {backgroundColor: colors.backgroundColor, borderRadius: 20, marginRight: 25}]} define={'none'}>
-                    <CBIcon type={'ionicon'} name={'cart-outline'} define={'icon'} size={24}/>
+                    <CBIcon type={'ionicon'} name={'calendar-outline'} define={'icon'} size={24}/>
                 </CBTouchableOpacity>
             </Fragment>
         );
