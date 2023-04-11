@@ -6,7 +6,7 @@ import colors from "configs/colors";
 import dimens from "configs/dimens";
 import QRCode from "react-native-qrcode-svg";
 
-const IdentityContent = ({onLogin}) => {
+const IdentityContent = ({defaultParam, onScanQRCode}) => {
 
     const {theme} = useTheme();
     const renderTitle = () => {
@@ -24,7 +24,7 @@ const IdentityContent = ({onLogin}) => {
     const renderRightButton = () => {
         return (
             <Fragment>
-                <CBTouchableOpacity style={[appStyles.action, {backgroundColor: colors.backgroundColor, borderRadius: 20, marginRight: 5}]} define={'none'}>
+                <CBTouchableOpacity style={[appStyles.action, {backgroundColor: colors.backgroundColor, borderRadius: 20, marginRight: 5}]} define={'none'} onPress={onScanQRCode}>
                     <CBIcon type={'ionicon'} name={'qr-code-outline'} define={'icon'} size={24}/>
                 </CBTouchableOpacity>
                 <CBTouchableOpacity style={[appStyles.action, {backgroundColor: colors.backgroundColor, borderRadius: 20, marginRight: 25}]} define={'none'}>

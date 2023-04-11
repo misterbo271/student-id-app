@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {AppState, Platform} from 'react-native';
 import RootNavigation from 'screens/RootNavigation';
-import {CBButton, CBIcon, CBText, CBTouchableOpacity, CBView} from 'components';
+import {CBButton, CBIcon, CBText, CBTouchableOpacity, CBView} from 'app/components';
 import EventTracker from 'controls/EventTracker';
 import {check, openSettings, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 import {CameraScreen} from 'react-native-camera-kit';
 import {RNCamera} from 'react-native-camera';
+import {debounce} from 'lodash';
 import {appStyles} from 'configs/styles';
 import {strings} from 'controls/i18n';
 import dimens from 'configs/dimens';
-import {debounce} from 'lodash';
 
 import Base from 'screens/Base';
 
-const anchor = dimens.statusBar + 5;
+const anchor = Platform.select({android: 5, ios: dimens.statusBar + 5});
 const top = (dimens.heightScreen / 2) + (dimens.widthScreen / 2);
 const left = dimens.widthScreen / 2;
 const margin = dimens.widthScreen / 7;
@@ -38,6 +38,7 @@ export default class ScanQRCode extends Base {
         super(props);
         this.camera = React.createRef();
         this.state = {
+            index: 1,
             toggleCamera: false,
             toggleModule: true,
             togglePermission: true,
@@ -90,7 +91,10 @@ export default class ScanQRCode extends Base {
 
     showAlertGrantPermission = () => {
         this.alert(strings('title_alert_permissions'),
-            strings('message_alert_camera_permission'),
+            Platform.select({
+                android: strings('message_alert_camera_permission_android'),
+                ios: strings('message_alert_camera_permission_ios')
+            }),
             [
                 {text: strings('button_close'), onPress: this.deniedPermission},
                 {text: strings('button_next'), onPress: this.requestCameraPermission}
@@ -107,33 +111,45 @@ export default class ScanQRCode extends Base {
     };
 
     onExit = () => {
-        RootNavigation.goBack();
+        const {index} = this.state;
+        if (index === 0) {
+            RootNavigation.goBack();
+        } else if (index === 1) {
+            RootNavigation.callback('onEnded', null);
+            RootNavigation.goBack();
+        }
         EventTracker.logEvent('screen_scan_qr_code', {action: 'click_button_exit'});
     };
 
+    onSuccess(data) {
+        RootNavigation.callback('onScanned', data);
+        RootNavigation.goBack();
+    }
+
+    onFailure() {
+
+    }
+
     onGoogleVisionBarcodesDetected = ({barcodes}) => {
-        const array = barcodes.filter(barcode => barcode.format !== 'None');
+        const array = barcodes.filter(barcode => barcode?.format !== 'None');
         if (array && Array.isArray(array) && array.length > 0) {
-            RootNavigation.callback('onScanned', {value: array[0].data});
-            RootNavigation.goBack();
+            this.onSuccess({value: array[0].data});
         }
     };
 
-    onGoogleVisionBarcodesDetectedDebounce = debounce(this.onGoogleVisionBarcodesDetected, 600, {leading: true, trailing: false});
+    onGoogleVisionBarcodesDetectedDebounce = debounce(this.onGoogleVisionBarcodesDetected, 300, {leading: true, trailing: false});
 
     onBarCodeRead = (event) => {
-        RootNavigation.callback('onScanned', {value: event.data, type: event.type});
-        RootNavigation.goBack();
+        this.onSuccess({value: event.data, type: event.type});
     };
 
-    onBarCodeReadDebounce = debounce(this.onBarCodeRead, 600, {leading: true, trailing: false});
+    onBarCodeReadDebounce = debounce(this.onBarCodeRead, 300, {leading: true, trailing: false});
 
     onReadCode = (event) => {
-        RootNavigation.callback('onScanned', {value: event.nativeEvent.codeStringValue});
-        RootNavigation.goBack();
+        this.onSuccess({value: event.nativeEvent.codeStringValue});
     };
 
-    onReadCodeDebounce = debounce(this.onReadCode, 600, {leading: true, trailing: false});
+    onReadCodeDebounce = debounce(this.onReadCode, 300, {leading: true, trailing: false});
 
     onAllowPermission = () => {
         openSettings().catch(() => console.log('Cannot open settings.'));
@@ -158,6 +174,10 @@ export default class ScanQRCode extends Base {
         EventTracker.logEvent('screen_scan_qr_code', {action: 'click_button_vision', stage: String(!toggleVision)});
     };
 
+    renderFooter() {
+        return null;
+    }
+
     render() {
         const {theme} = this.context;
         const {toggleCamera, toggleModule, togglePermission, toggleTorch, toggleVision} = this.state;
@@ -169,7 +189,7 @@ export default class ScanQRCode extends Base {
                         <CBText style={[appStyles.subtext, {color: '#FFFFFF', textAlign: 'center'}]} define={'none'}>{`${strings('text_allow_camera')}\n${strings('text_description_camera')}`}</CBText>
                         <CBButton containerStyle={{marginTop: 15}} buttonStyle={{borderColor: '#FFFFFF'}} titleStyle={{color: '#FFFFFF'}} type={'outline'} title={strings('action_allow_permission')} onPress={this.onAllowPermission}/>
                     </CBView> : null}
-                    {toggleCamera ? <>
+                    {toggleCamera ? <Fragment>
                         {!toggleModule ? <CameraScreen
                                 ref={this.camera}
                                 style={{flex: 1}}
@@ -198,7 +218,6 @@ export default class ScanQRCode extends Base {
                                     height: CAMERA_VIEW_HEIGHT,
                                 }}
                                 flashMode={toggleTorch ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
-                                barCodeTypes={[RNCamera.Constants.BarCodeType.qr, RNCamera.Constants.BarCodeType.code128]}
                                 onBarCodeRead={!toggleVision ? this.onBarCodeReadDebounce : null}
                                 onGoogleVisionBarcodesDetected={toggleVision ? this.onGoogleVisionBarcodesDetectedDebounce : null}>
                                 <CBView style={{flex: 1}} define={'none'}>
@@ -218,7 +237,7 @@ export default class ScanQRCode extends Base {
                         {/*{toggleModule ? <CBTouchableOpacity style={[appStyles.action, {position: 'absolute', top: top + 10, left: left + 5}]} define={'none'} onPress={this.toggleVision}>
                             <CBIcon type={'ionicon'} name={toggleVision ? 'eye-off-outline' : 'eye-outline'} color={'#FFFFFF'} size={25}/>
                         </CBTouchableOpacity> : null}*/}
-                    </> : null}
+                    </Fragment> : null}
                     <CBTouchableOpacity style={[appStyles.action, {position: 'absolute', top: anchor, left: 5}]} define={'none'} onPress={this.onExit}>
                         <CBIcon type={'ionicon'} name={'close-outline'} color={'#FFFFFF'} size={30}/>
                     </CBTouchableOpacity>
@@ -226,6 +245,7 @@ export default class ScanQRCode extends Base {
                         <CBIcon type={'ionicon'} name={!toggleModule ? 'camera-outline' : 'aperture-outline'} color={'#FFFFFF'} size={25}/>
                     </CBTouchableOpacity>
                 </CBView>
+                {this.renderFooter()}
             </CBView>
         );
     }
