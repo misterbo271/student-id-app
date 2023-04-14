@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {CBAction, CBBoxInput, CBButton, CBContainer, CBIcon, CBInput, CBText, CBTouchableOpacity, CBTouchableWithoutFeedback, CBView} from 'components';
+import {CBAction, CBBoxInput, CBButton, CBButtonRound, CBContainer, CBIcon, CBInput, CBText, CBTouchableOpacity, CBTouchableWithoutFeedback, CBView} from 'components';
 import {Keyboard} from 'react-native';
 import {appStyles} from 'configs/styles';
 import {strings} from 'controls/i18n';
@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigation from 'screens/RootNavigation';
+import {helpers} from "configs/themes";
 
 const FormikPassword = ({initialValues, onConfirmPassword}) => {
     const formikRef = useRef(null);
@@ -73,7 +74,7 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
                             onSubmitEditing={handleSubmit}
                         />
                         {values.password && values.password.length > 0 ? <CBAction style={{marginTop: 10, alignSelf: 'flex-end'}} title={!togglePassword ? strings('action_show_password') : strings('action_hide_password')} onPress={onTogglePassword}/> : null}
-                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={appStyles.button} title={'Tạo mật khẩu'} onPress={handleSubmit}/>
+                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={appStyles.button} title={strings('text_create_password')} onPress={handleSubmit}/>
                     </>
                 )
             }
@@ -140,23 +141,16 @@ const RegisterContent = () => {
         setConfirmSrp(confirmSrp);
     };
 
-
-
     return (
         <CBContainer>
             <CBView>
-                <CBText style={[appStyles.heading, { marginTop: 30, alignSelf: 'center'}]} >{strings('text_title_pcs_wallet')}</CBText>
+                <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 15, alignSelf: 'center'}]} >{strings('text_title_pcs_wallet')}</CBText>
                 <CBView style={[appStyles.row, {justifyContent: 'center', marginTop: 20}]} define={'none'}>
-                    <CBIcon type={'material-community'} name={'numeric-1-circle-outline'} color={colors.primaryColor} size={24}/>
-                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor, marginVertical: 5}]} define={'none'}/>
-                    <CBIcon type={'material-community'} name={'numeric-2-circle-outline'} color={colors.tabColor} size={24}/>
-                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor, marginVertical: 5}]} define={'none'}/>
-                    <CBIcon type={'material-community'} name={'numeric-3-circle-outline'} color={colors.tabColor} size={24}/>
-                </CBView>
-                <CBView style={[appStyles.row, {justifyContent: 'space-between', marginTop: 10}]} define={'none'}>
-                    <CBText style={[appStyles.subtext, {fontSize: dimens.smallText, marginLeft: 10, color: colors.primaryColor}]}>{strings('text_create_password')}</CBText>
-                    <CBText style={[appStyles.subtext, {fontSize: dimens.smallText, color: colors.tabColor}]}>{strings('text_wallet_security')}</CBText>
-                    <CBText style={[appStyles.subtext, {fontSize: dimens.smallText, marginRight: 10, color: colors.tabColor}]}>{strings('text_confirm_srp')}</CBText>
+                    <CBButtonRound type={'material-community'} name={'numeric-1-circle-outline'} color={tab === 0 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 0 ? colors.primaryColor : colors.tabColor}} title={strings('text_create_password')}/>
+                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor}]} define={'none'}/>
+                    <CBButtonRound type={'material-community'} name={'numeric-2-circle-outline'} color={tab === 1 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 1 ? colors.primaryColor : colors.tabColor}} title={strings('text_wallet_security')}/>
+                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor}]} define={'none'}/>
+                    <CBButtonRound type={'material-community'} name={'numeric-3-circle-outline'} color={tab === 2 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 2 ? colors.primaryColor : colors.tabColor}} title={strings('text_confirm_srp')}/>
                 </CBView>
             </CBView>
             {tab === 0 ? <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'} onPress={onBlur}>

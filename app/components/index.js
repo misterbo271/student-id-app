@@ -7,6 +7,7 @@ import CBBottomInput from 'components/CBBottomInput';
 import CBBottomSheet from 'components/CBBottomSheet';
 import CBBoxInput from 'components/CBBoxInput';
 import CBButton from 'components/CBButton';
+import CBButtonRound from 'components/CBButtonRound';
 import CBButtonGroup from 'components/CBButtonGroup';
 import CBCan from 'components/CBCan';
 import CBCard from 'components/CBCard';
@@ -58,6 +59,7 @@ export {
     CBBottomSheet,
     CBBoxInput,
     CBButton,
+    CBButtonRound,
     CBButtonGroup,
     CBCan,
     CBCard,
