@@ -102,8 +102,8 @@ const DashboardContent = ({onLogin}) => {
             <CBTouchableOpacity key={index} style={{borderColor: colors.accentDarkColor, marginLeft: index > 0 ? 15 : 0}} define={'none'}>
                 <CBView style={[{borderColor: colors.accentDarkColor, padding: 5, borderRadius: 10, backgroundColor: colors.accentDarkColor}, {width: dimens.widthScreen / 2.5, height: dimens.heightScreen / 5, marginTop: 10}]} define={'none'}>
                     <CBView style={[appStyles.row]}>
-                        <CBView style={{flex: 1}}>
-                            <CBImage containerStyle={[appStyles.image, {borderRadius: 10, width: moderateScale(40), height: moderateScale(40), alignSelf: 'center'}]} source={ImageUtil.getImage(item?.avatar)} resizeMode={'contain'}/>
+                        <CBView style={{padding: 15, flex: 1}}>
+                            <CBImage containerStyle={[appStyles.image, {borderRadius: 10, width: moderateScale(60), height: moderateScale(60), alignSelf: 'center'}]} source={ImageUtil.getImage(item?.avatar)} resizeMode={'contain'}/>
                         </CBView>
                         <CBView style={{marginLeft: 10, flex: 2}}>
                             <CBText style={[appStyles.title]}>{item?.type}</CBText>
