@@ -78,8 +78,8 @@ const ResetWalletPopup = ({style, onAction}, ref) => {
                     <CBText style={[appStyles.title, { marginTop: 15, color: colors.semiRed, alignSelf: 'center'}]} >{strings('text_confirm_reset_wallet_1')}</CBText>
                     <CBText style={[appStyles.title, { marginTop: 5, color: colors.semiRed, alignSelf: 'center'}]} >{strings('text_confirm_reset_wallet_2')}</CBText>
                     <CBText style={[appStyles.text, {marginTop: 15, alignSelf: 'center'}]} define={'subtext'}>Type Something Here</CBText>
-                    <CBButton containerStyle={{paddingHorizontal: 35, paddingVertical: 20}} title={strings('action_agree_reset_wallet')} onPress={onAuthScreen}/>
-                    <CBButton containerStyle={{paddingHorizontal: 35}} type="outline" title={strings('button_back')} onPress={hide}/>
+                    <CBButton containerStyle={{paddingHorizontal: 35, paddingVertical: 20}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={strings('action_agree_reset_wallet')} onPress={onAuthScreen}/>
+                    <CBButton containerStyle={{paddingHorizontal: 35}} buttonStyle={[appStyles.button, {borderRadius: 10}]} type="outline" title={strings('button_back')} onPress={hide}/>
                 </ScrollView>
             </View>
         </Modal>

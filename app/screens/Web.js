@@ -4,17 +4,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {WebView} from 'react-native-webview';
 import RootNavigation from 'screens/RootNavigation';
 import {HeaderBackButton} from '@react-navigation/elements';
-import {
-    CBButton,
-    CBContainer,
-    CBDivider,
-    CBIcon,
-    CBImage,
-    CBMenu,
-    CBText,
-    CBTouchableOpacity,
-    CBView
-} from 'components';
+import {CBButton, CBContainer, CBDivider, CBIcon, CBImage, CBMenu, CBText, CBTouchableOpacity, CBView} from 'components';
 import CBConstant from 'constants/CBConstant';
 import EventTracker from 'controls/EventTracker';
 import CBControl from 'controls/CBControl';

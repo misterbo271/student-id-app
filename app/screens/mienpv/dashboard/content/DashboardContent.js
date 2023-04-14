@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {CBAvatar, CBContainer, CBHeader, CBIcon, CBImage, CBText, CBTouchableOpacity, CBView} from 'components';
+import {CBAvatar, CBContainer, CBHeader, CBIcon, CBImage, CBRollView, CBText, CBTouchableOpacity, CBView} from 'components';
 import {useTheme} from 'react-native-elements';
 import {appStyles} from "configs/styles";
 import colors from "configs/colors";
@@ -7,6 +7,8 @@ import {moderateScale} from "utils/ThemeUtil";
 import ImageUtil from "utils/ImageUtil";
 import dimens from "configs/dimens";
 import QRCode from "react-native-qrcode-svg";
+
+const studyInfo = require("../../../../assets/jsons/study.json");
 
 const DashboardContent = ({onLogin}) => {
 
@@ -19,7 +21,7 @@ const DashboardContent = ({onLogin}) => {
                     size={50}
                     source={require('assets/images/avatar.png')}
                 />
-                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.themeGreen}]}>Hi, Mien PV</CBText>
+                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>Hi, Mien PV</CBText>
             </CBView>
         );
     }
@@ -43,7 +45,7 @@ const DashboardContent = ({onLogin}) => {
 
     const renderCard = () => {
         return (
-            <CBTouchableOpacity style={[appStyles.seat, appStyles.shadow, {borderColor: colors.hcmutColor, borderWidth: 2, padding: 15, alignItems: 'flex-start', justifyContent: 'flex-start'}]}>
+            <CBTouchableOpacity style={[appStyles.seat, appStyles.shadow, {borderColor: colors.primaryColor, borderWidth: 2, padding: 15, alignItems: 'flex-start', justifyContent: 'flex-start'}]}>
                 <CBView style={appStyles.row}>
                     <CBView style={[appStyles.row, {flex: 1}]}>
                         <CBImage containerStyle={[appStyles.image, {width: moderateScale(30), height: moderateScale(30)}]} source={ImageUtil.getImage('hcmut_logo')} resizeMode={'contain'}/>
@@ -95,13 +97,37 @@ const DashboardContent = ({onLogin}) => {
         )
     }
 
+    const renderStudy = (item, index) => {
+        return (
+            <CBTouchableOpacity key={index} style={{borderColor: colors.accentDarkColor, marginLeft: index > 0 ? 15 : 0}} define={'none'}>
+                <CBView style={[{borderColor: colors.accentDarkColor, padding: 5, borderRadius: 10, backgroundColor: colors.accentDarkColor}, {width: dimens.widthScreen / 2.5, height: dimens.heightScreen / 5, marginTop: 10}]} define={'none'}>
+                    <CBView style={[appStyles.row]}>
+                        <CBView style={{flex: 1}}>
+                            <CBImage containerStyle={[appStyles.image, {borderRadius: 10, width: moderateScale(40), height: moderateScale(40), alignSelf: 'center'}]} source={ImageUtil.getImage(item?.avatar)} resizeMode={'contain'}/>
+                        </CBView>
+                        <CBView style={{marginLeft: 10, flex: 2}}>
+                            <CBText style={[appStyles.title]}>{item?.type}</CBText>
+                        </CBView>
+                    </CBView>
+                    <CBText style={[appStyles.subtext, {marginTop: 15}]}>{item?.content}</CBText>
+                </CBView>
+            </CBTouchableOpacity>
+            )
+    }
+
     return (
         <CBContainer>
             <CBHeader style={{backgroundColor: colors.backgroundColor, textAlign: 'left'}} title={renderTitle()} headerLeft={renderLeftButton()} headerRight={renderRightButton()}/>
             <CBView style={{padding: 15, marginTop: 30}}>
                 {renderCard()}
             </CBView>
-
+            <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 30, paddingHorizontal: 15, color: colors.primaryColor}]}>Thông tin sinh viên</CBText>
+            <CBRollView
+                contentContainerStyle={{paddingHorizontal: 15, paddingVertical: 15}}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                {studyInfo.map(renderStudy)}
+            </CBRollView>
         </CBContainer>
     );
 };

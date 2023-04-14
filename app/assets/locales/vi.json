@@ -93,7 +93,7 @@
   "text_note_confirm_password": "Trước khi bắt đầu chúng tôi muốn bạn xác nhận lại mật khẩu của mình",
   "text_note_seed_key": "Chúng tôi sẽ gửi cho bạn một Seed Key sau khi bạn nhập thông tin email và trả lời câu hỏi dưới đây",
   "text_wallet_security": "Bảo mật Wallet",
-  "text_confirm_srp": "Xác nhận Secret\nRecovery Phrase",
+  "text_confirm_srp": "Xác nhận SRP",
   "text_my_school": "Trường học của tôi",
   "text_input_password": "Nhập mật khẩu",
   "text_remember_me": "Lưu đăng nhập",

@@ -44,7 +44,7 @@ const FormikInput = ({initialValues, onLogin}) => {
                             onSubmitEditing={handleSubmit}
                         />
                         {values.password && values.password.length > 0 ? <CBAction style={{marginTop: 10, alignSelf: 'flex-end'}} title={!togglePassword ? strings('action_show_password') : strings('action_hide_password')} onPress={onTogglePassword}/> : null}
-                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={appStyles.button} title={strings('button_login')} onPress={handleSubmit}/>
+                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={strings('button_login')} onPress={handleSubmit}/>
                     </>
                 )
             }
@@ -65,11 +65,11 @@ const LoginOrRegisterContent = ({onLogin}) => {
         <CBContainer>
             <CBView style={{flex: 1, paddingVertical: 55, paddingHorizontal: 30}} define={'none'}>
                 <CBAvatar
-                    size={100}
+                    size={140}
                     source={require('../../../../assets/images/fennec_chibi.jpeg')}
                     containerStyle={{justifyContent: 'center', alignSelf: 'center'}}
                 />
-                <CBText style={[appStyles.heading, {marginTop: 50, alignSelf: 'center'}]}>Chào mừng quay trở lại</CBText>
+                <CBText style={[appStyles.title, {marginTop: 50, alignSelf: 'center'}]}>Chào mừng quay trở lại</CBText>
                 <CBView>
                     <CBText style={[appStyles.text, {marginTop: 20, marginBottom: 15}]} define={'subtext'}>{'Nhập mật khẩu'}</CBText>
                     <FormikInput initialValues={{username: '', password: ''}} onLogin={onLogin}/>

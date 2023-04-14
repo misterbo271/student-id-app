@@ -3,18 +3,18 @@ export default {
 
     statusBarDarkColor: '#28293D',
 
-    primaryColor: '#DAAA63',
+    primaryColor: '#00425A',
     secondaryColor: '#FBF8F1',
     thirdColor: 'rgba(57, 217, 138, 0.1)',
     accentColor: '#EEFAF3',
-    backgroundColor: '#FBF8F1',
+    backgroundColor: '#DAF5FF',
     hcmutTextColor: '#0061C5',
     hcmutColor: '#002FAF',
 
     primaryDarkColor: '#285430',
-    secondaryDarkColor: '#5F8D4E',
+    secondaryDarkColor: '#1F8A70',
     thirdDarkColor: 'rgba(87, 235, 161, 0.1)',
-    accentDarkColor: '#303D46',
+    accentDarkColor: '#FAF7F0',
     hintColor: '#ECF6FF',
     hintDarkColor: '#3E4057',
 
@@ -47,7 +47,7 @@ export default {
     yellow: '#FFCC00',
     teal: '#00CFDE',
     purple: '#6600CC',
-    themeGreen: '#005D37',
+    themeGreen: '#1F8A70',
 
     redDark: '#E53535',
     greenDark: '#05A660',

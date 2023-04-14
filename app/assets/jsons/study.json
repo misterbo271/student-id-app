@@ -1,0 +1,22 @@
+[
+  {
+    "type": "E-learning",
+    "avatar": "https://mybk.hcmut.edu.vn/my/images/upload/app_bk_e-learning.png",
+    "content": "Hệ thống e-learning của Đại học Bách Khoa HCM"
+  },
+  {
+    "type": "BK Pay",
+    "avatar": "https://mybk.hcmut.edu.vn/my/images/upload/app_bkpay.png",
+    "content": "Cổng thanh toán trực tuyến"
+  },
+  {
+    "type": "Thông tin sinh viên",
+    "avatar": "https://mybk.hcmut.edu.vn/my/images/upload/app_stinfo.png",
+    "content": "Tra cứu, cập nhật thông tin sinh viên"
+  },
+  {
+    "type": "Xét chứng chỉ",
+    "avatar": "https://mybk.hcmut.edu.vn/my/images/upload/app_xetcc.png",
+    "content": "Đăng kí thông tin chứng chỉ"
+  }
+]

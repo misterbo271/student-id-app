@@ -33,6 +33,7 @@ import CBMenu from 'components/CBMenu';
 import CBRadio from 'components/CBRadio';
 import CBRating from 'components/CBRating';
 import CBRefreshControl from 'components/CBRefreshControl';
+import CBRollView from 'components/CBRollView';
 import CBRound from 'components/CBRound';
 import CBScaleImage from 'components/CBScaleImage';
 import CBScrollView from 'components/CBScrollView';
@@ -85,6 +86,7 @@ export {
     CBRadio,
     CBRating,
     CBRefreshControl,
+    CBRollView,
     CBRound,
     CBScaleImage,
     CBScrollView,

@@ -74,7 +74,7 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
                             onSubmitEditing={handleSubmit}
                         />
                         {values.password && values.password.length > 0 ? <CBAction style={{marginTop: 10, alignSelf: 'flex-end'}} title={!togglePassword ? strings('action_show_password') : strings('action_hide_password')} onPress={onTogglePassword}/> : null}
-                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={appStyles.button} title={strings('text_create_password')} onPress={handleSubmit}/>
+                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={strings('text_create_password')} onPress={handleSubmit}/>
                     </>
                 )
             }
@@ -146,11 +146,11 @@ const RegisterContent = () => {
             <CBView>
                 <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 15, alignSelf: 'center'}]} >{strings('text_title_pcs_wallet')}</CBText>
                 <CBView style={[appStyles.row, {justifyContent: 'center', marginTop: 20}]} define={'none'}>
-                    <CBButtonRound type={'material-community'} name={'numeric-1-circle-outline'} color={tab === 0 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 0 ? colors.primaryColor : colors.tabColor}} title={strings('text_create_password')}/>
-                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor}]} define={'none'}/>
-                    <CBButtonRound type={'material-community'} name={'numeric-2-circle-outline'} color={tab === 1 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 1 ? colors.primaryColor : colors.tabColor}} title={strings('text_wallet_security')}/>
-                    <CBView style={[appStyles.separator, {width: 110, backgroundColor: colors.tabColor}]} define={'none'}/>
-                    <CBButtonRound type={'material-community'} name={'numeric-3-circle-outline'} color={tab === 2 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 2 ? colors.primaryColor : colors.tabColor}} title={strings('text_confirm_srp')}/>
+                    <CBButtonRound type={'material-community'} name={'numeric-1-circle-outline'} color={tab === 0 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 0 ? colors.primaryColor : colors.tabColor}} title={strings('text_create_password')} onPress={onChangeTab(0)}/>
+                    <CBView style={[appStyles.separator, {width: 80, backgroundColor: colors.tabColor}]} define={'none'}/>
+                    <CBButtonRound disabled={tab === 0} type={'material-community'} name={'numeric-2-circle-outline'} color={tab === 1 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 1 ? colors.primaryColor : colors.tabColor}} title={strings('text_wallet_security')} onPress={onChangeTab(1)}/>
+                    <CBView style={[appStyles.separator, {width: 80, backgroundColor: colors.tabColor}]} define={'none'}/>
+                    <CBButtonRound disabled={tab === 0 || tab === 1} type={'material-community'} name={'numeric-3-circle-outline'} color={tab === 2 ? colors.primaryColor : colors.tabColor} size={24} textStyle={{color: tab === 2 ? colors.primaryColor : colors.tabColor}} title={strings('text_confirm_srp')} onPress={onChangeTab(2)}/>
                 </CBView>
             </CBView>
             {tab === 0 ? <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'} onPress={onBlur}>
@@ -168,7 +168,7 @@ const RegisterContent = () => {
                         <CBView style={[appStyles.outline, {padding: 15, marginTop: 30, borderColor: colors.primaryColor, borderRadius: 16}]}>
                             <CBText style={[appStyles.text, {fontSize: dimens.largeText,padding: 6}]} selectable={true}>{srp?.join(' ')}</CBText>
                         </CBView>
-                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={appStyles.button} title={'Tiếp tục'} onPress={onChangeTab(2)}/>
+                        <CBButton containerStyle={{marginTop: 45}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Tiếp tục'} onPress={onChangeTab(2)}/>
                     </CBView>
                 </CBTouchableWithoutFeedback> :  tab === 2 ?
                     <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'}>
@@ -186,7 +186,7 @@ const RegisterContent = () => {
                                 onAction={onAction}
                                 onChangeText={onConfirmSrpChange} />
                             {errorSrp.length > 0 ? <CBText>{errorSrp}</CBText> : null}
-                            <CBButton containerStyle={{marginTop: 45}} buttonStyle={appStyles.button} title={'Xác nhận'} onPress={onCreatePassword}/>
+                            <CBButton containerStyle={{marginTop: 45}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Xác nhận'} onPress={onCreatePassword}/>
                         </CBView>
                     </CBTouchableWithoutFeedback> : null}
         </CBContainer>

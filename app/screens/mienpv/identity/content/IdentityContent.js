@@ -12,7 +12,7 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
     const renderTitle = () => {
         return (
             <CBView style={[appStyles.row, {flex: 1, marginLeft: 20, marginRight: 10}]} define={'none'}>
-                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.themeGreen}]}>Hi, Mien PV</CBText>
+                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>Hi, Mien PV</CBText>
             </CBView>
         );
     }
@@ -55,7 +55,7 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
                             size={200}/>
                     </CBView>
                     <CBView style={{padding: 40}}>
-                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.secondaryDarkColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'}/>
+                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.primaryColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'}/>
                     </CBView>
                 </CBView>
             </CBView>

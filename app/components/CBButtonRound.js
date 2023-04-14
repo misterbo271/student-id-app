@@ -3,6 +3,7 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {Icon, useTheme} from 'react-native-elements';
 import {appStyles} from 'configs/styles';
 import {helpers} from 'configs/themes';
+import colors from "configs/colors";
 
 const CBButtonRound = ({style, textStyle, buttonStyle, disabled, type, name, color, size, title, onPress}) => {
     const {theme} = useTheme();
@@ -10,7 +11,7 @@ const CBButtonRound = ({style, textStyle, buttonStyle, disabled, type, name, col
     const disabledStyle = helpers('disabled', theme.colors.scheme);
     return (
         <TouchableOpacity
-            style={[{width: 'auto', alignItems: 'center', paddingHorizontal: 7.5}, style]}
+            style={[{width: 'auto', alignItems: 'center'}, style]}
             disabled={disabled}
             pointerEvents={disabled ? 'none' : 'auto'}
             onPress={onPress}>
