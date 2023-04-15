@@ -39,7 +39,7 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.id}
                             error={errors.id}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('id')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Họ và tên'}</CBText>
@@ -52,7 +52,7 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.fullName}
                             error={errors.fullName}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('fullName')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Đại học'}</CBText>
@@ -65,7 +65,7 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.school}
                             error={errors.school}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('school')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Khoa'}</CBText>
@@ -78,7 +78,7 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.faculty}
                             error={errors.faculty}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('faculty')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 15}]} define={'subtext'}>{'Email'}</CBText>
@@ -91,7 +91,7 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.email}
                             error={errors.email}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('email')}
                             onSubmitEditing={handleSubmit}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Ngày sinh'}</CBText>
@@ -104,10 +104,10 @@ const FormikInput = ({initialValues}) => {
                             maxLength={64}
                             value={values.dayOfBirth}
                             error={errors.dayOfBirth}
-                            onChangeText={handleChange('password')}
+                            onChangeText={handleChange('dayOfBirth')}
                             onSubmitEditing={handleSubmit}
                         />
-                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={strings('button_login')} onPress={handleSubmit}/>
+                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Submit'} onPress={handleSubmit}/>
                     </>
                 )
             }
