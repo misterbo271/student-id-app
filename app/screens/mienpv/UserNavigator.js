@@ -12,6 +12,7 @@ import Web from 'screens/Web';
 import Empty from 'screens/Empty';
 import Introduction from 'screens/mienpv/auth/Introduction';
 import VerifyInput from 'screens/mienpv/auth/VerifyInput';
+import Pending from "screens/mienpv/auth/Pending";
 import Dashboard from "screens/mienpv/dashboard/Dashboard";
 import Profile from "screens/mienpv/profile/Profile";
 import ScanIdentity from "screens/mienpv/identity/ScanIdentity";
@@ -52,6 +53,7 @@ export const UserStack = () => {
             <Stack.Screen name={'Empty'} component={Empty} options={{title: strings('screen_empty')}}/>
             <Stack.Screen name={'Introduction'} component={Introduction} options={{...TransitionPresets.ModalSlideFromBottomIOS, headerShown: false}}/>
             <Stack.Screen name={'VerifyInput'} component={VerifyInput} options={{headerShown: false}}/>
+            <Stack.Screen name={'Pending'} component={Pending} options={{headerShown: false}}/>
             <Stack.Screen name={'Dashboard'} component={Dashboard} options={{headerShown: false}}/>
             <Stack.Screen name={'Profile'} component={Profile} options={{headerShown: false}}/>
             <Stack.Screen name={'ScanIdentity'} component={ScanIdentity} options={{headerShown: false}}/>

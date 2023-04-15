@@ -7,7 +7,7 @@ import {appStyles} from "configs/styles";
 import {Formik} from "formik";
 import * as yup from 'yup';
 
-const FormikInput = ({initialValues, onPending}) => {
+const FormikInput = ({initialValues}) => {
     const validationSchema = yup.object({
         password: yup.string()
             .required(strings('error_empty_password'))
@@ -22,10 +22,10 @@ const FormikInput = ({initialValues, onPending}) => {
     return (
         <Formik
             initialValues={initialValues}
-            //validationSchema={validationSchema}
+            validationSchema={validationSchema}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={onPending}>
+            onSubmit={console.log('ahiih')}>
             {
                 ({handleChange, handleSubmit, values, errors}) => (
                     <>
@@ -115,7 +115,7 @@ const FormikInput = ({initialValues, onPending}) => {
     )
 }
 
-const VerifyInputContent = ({defaultParam, onPending}) => {
+const PendingContent = ({defaultParam}) => {
 
     const {theme} = useTheme();
     const resetWalletPopupRef = useRef();
@@ -124,13 +124,13 @@ const VerifyInputContent = ({defaultParam, onPending}) => {
         <CBContainer>
             <CBView style={{flex: 1, paddingHorizontal: 30}} define={'none'}>
                 <CBText style={[appStyles.title, {marginTop: 10, alignSelf: 'center'}]}>Thông tin cá nhân</CBText>
-                <CBScrollView
-                    style={[appStyles.content]}
-                    showsVerticalScrollIndicator={false}
-                    refreshControl={<CBRefreshControl/>}
-                    define={'content'}>
-                    <FormikInput initialValues={{id: '', fullName: '', school: '', faculty: '', email: '', dayOfBirth: ''}} onPending={onPending}/>
-                </CBScrollView>
+                {/*<CBScrollView*/}
+                {/*    style={[appStyles.content]}*/}
+                {/*    showsVerticalScrollmIndicator={false}*/}
+                {/*    refreshControl={<CBRefreshControl/>}*/}
+                {/*    define={'content'}>*/}
+                {/*    <FormikInput initialValues={{id: '', fullName: '', school: '', faculty: '', email: '', dayOfBirth: ''}}/>*/}
+                {/*</CBScrollView>*/}
                 {/*<ResetWalletPopup ref={resetWalletPopupRef}/>*/}
             </CBView>
 
@@ -138,4 +138,4 @@ const VerifyInputContent = ({defaultParam, onPending}) => {
     );
 };
 
-export default VerifyInputContent;
+export default PendingContent;
