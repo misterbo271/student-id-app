@@ -14,7 +14,8 @@ export default class ImageUtil {
         logo_intro_0: require('assets/images/logo_intro_0.png'),
         logo_intro_1: require('assets/images/logo_intro_1.png'),
         logo_intro_2: require('assets/images/logo_intro_2.png'),
-        student: require('assets/images/student.png')
+        student: require('assets/images/student.png'),
+        pending: require('assets/images/pending.png')
     };
 
     static getImage(imageUrl) {

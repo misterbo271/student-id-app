@@ -32,7 +32,7 @@ const FormikInput = ({initialValues, onLogin}) => {
                 ({handleChange, handleSubmit, values, errors}) => (
                     <>
                         <CBInput
-                            style={{width: '100%', marginTop: 15}}
+                            style={{width: '100%', marginTop: 5}}
                             placeholder={'Nhập mật khẩu'}
                             returnKeyType={'go'}
                             autoCapitalize={'none'}
@@ -71,7 +71,7 @@ const LoginOrRegisterContent = ({onLogin}) => {
                 />
                 <CBText style={[appStyles.title, {marginTop: 50, alignSelf: 'center'}]}>Chào mừng quay trở lại</CBText>
                 <CBView>
-                    <CBText style={[appStyles.text, {marginTop: 20, marginBottom: 15}]} define={'subtext'}>{'Nhập mật khẩu'}</CBText>
+                    <CBText style={[appStyles.text, {marginTop: 20, marginBottom: 15}]} define={'subtext'}>{'Mật khẩu'}</CBText>
                     <FormikInput initialValues={{username: '', password: ''}} onLogin={onLogin}/>
                     <CBText style={[appStyles.text, {marginTop: 90, alignSelf: 'center'}]} define={'subtext'}>{'Không thể đăng nhập? Bạn có thể XOÁ'}</CBText>
                     <CBText style={[appStyles.text, {marginTop: 5, alignSelf: 'center'}]} define={'subtext'}>ví hiện tại của bạn và cài một ví mới khác.</CBText>

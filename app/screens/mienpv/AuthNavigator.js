@@ -11,6 +11,8 @@ import dimens from 'configs/dimens';
 import LoginOrRegister from 'screens/mienpv/auth/LoginOrRegister';
 import Authentication from 'screens/mienpv/auth/Authentication';
 import Register from 'screens/mienpv/auth/Register';
+import VerifyInput from 'screens/mienpv/auth/VerifyInput';
+import Pending from 'screens/mienpv/auth/Pending';
 import {strings} from "controls/i18n";
 
 const Stack = createStackNavigator();
@@ -52,6 +54,8 @@ export const AuthStack = () => {
             <Stack.Screen name={'LoginOrRegister'} component={LoginOrRegister} options={{title: strings('screen_login')}}/>
             <Stack.Screen name={'Authentication'} component={Authentication} options={{title: strings('screen_login')}}/>
             <Stack.Screen name={'Register'} component={Register} options={{title: strings('screen_login')}}/>
+            <Stack.Screen name={'VerifyInput'} component={VerifyInput} options={{headerShown: false}}/>
+            <Stack.Screen name={'Pending'} component={Pending} options={{headerShown: false}}/>
         </Stack.Navigator>
     );
 }

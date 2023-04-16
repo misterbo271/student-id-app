@@ -25,8 +25,6 @@ export default class LoginOrRegister extends Base {
         try {
             const value = await AsyncStorage.getItem('password')
             const value1 = await AsyncStorage.getItem('srp')
-            console.log(`mienpv :: ${JSON.stringify(value)}`);
-            console.log(`mienpv :: ${JSON.stringify(value1)}`);
             if(values.password === value) {
                 //RootNavigation.navigate('Home');
                 AppStore.setMode('User');

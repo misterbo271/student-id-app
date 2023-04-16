@@ -9,7 +9,6 @@ import dimens from 'configs/dimens';
 import Dashboard from 'screens/mienpv/dashboard/Dashboard';
 import Identity from 'screens/mienpv/identity/Identity';
 import Profile from 'screens/mienpv/profile/Profile';
-import VerifyInput from 'screens/mienpv/auth/VerifyInput';
 
 const Tab = createBottomTabNavigator();
 const Home = () => {
@@ -54,7 +53,6 @@ const Home = () => {
             <Tab.Screen name={'Dashboard'} component={Dashboard} options={{headerShown: false, tabBarIcon: renderTabBarIcon('book-outline')}}/>
             <Tab.Screen name={'Identity'} component={Identity} options={{headerShown: false, tabBarIcon: renderTabBarIcon('qr-code-outline')}}/>
             <Tab.Screen name={'Profile'} component={Profile} options={{headerShown: false, tabBarIcon: renderTabBarIcon('person-outline')}}/>
-            <Tab.Screen name={'VerifyInput'} component={VerifyInput} options={{headerShown: false, tabBarIcon: renderTabBarIcon('person-outline')}}/>
         </Tab.Navigator>
     );
 };

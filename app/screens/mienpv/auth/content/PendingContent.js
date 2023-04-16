@@ -1,11 +1,15 @@
-import React, {useRef, useState} from 'react';
-import {CBAction, CBAvatar, CBButton, CBContainer, CBInput, CBRefreshControl, CBScrollView, CBText, CBView} from 'components';
+import React, {Fragment, useRef, useState} from 'react';
+import {CBAction, CBAvatar, CBButton, CBContainer, CBHeader, CBIcon, CBImage, CBInput, CBTouchableOpacity, CBText, CBView} from 'components';
 import ResetWalletPopup from 'screens/popup/ResetWalletPopup';
 import {useTheme} from 'react-native-elements';
 import {strings} from "controls/i18n";
 import {appStyles} from "configs/styles";
 import {Formik} from "formik";
 import * as yup from 'yup';
+import {moderateScale} from "utils/ThemeUtil";
+import ImageUtil from "utils/ImageUtil";
+import colors from "configs/colors";
+import dimens from "configs/dimens";
 
 const FormikInput = ({initialValues}) => {
     const validationSchema = yup.object({
@@ -42,71 +46,6 @@ const FormikInput = ({initialValues}) => {
                             onChangeText={handleChange('id')}
                             onSubmitEditing={handleSubmit}
                         />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Họ và tên'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập họ và tên'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.fullName}
-                            error={errors.fullName}
-                            onChangeText={handleChange('fullName')}
-                            onSubmitEditing={handleSubmit}
-                        />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Đại học'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập tên trường'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.school}
-                            error={errors.school}
-                            onChangeText={handleChange('school')}
-                            onSubmitEditing={handleSubmit}
-                        />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Khoa'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập khoa'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.faculty}
-                            error={errors.faculty}
-                            onChangeText={handleChange('faculty')}
-                            onSubmitEditing={handleSubmit}
-                        />
-                        <CBText style={[appStyles.text, {marginBottom: 15}]} define={'subtext'}>{'Email'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập email'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.email}
-                            error={errors.email}
-                            onChangeText={handleChange('email')}
-                            onSubmitEditing={handleSubmit}
-                        />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Ngày sinh'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập ngày sinh'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.dayOfBirth}
-                            error={errors.dayOfBirth}
-                            onChangeText={handleChange('dayOfBirth')}
-                            onSubmitEditing={handleSubmit}
-                        />
                         <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Submit'} onPress={handleSubmit}/>
                     </>
                 )
@@ -115,23 +54,41 @@ const FormikInput = ({initialValues}) => {
     )
 }
 
-const PendingContent = ({defaultParam}) => {
+const PendingContent = ({defaultParam, onVerifyInput, onLogin}) => {
 
     const {theme} = useTheme();
     const resetWalletPopupRef = useRef();
 
+    const renderTitle = () => {
+        return (
+            <CBView style={[appStyles.row, {flex: 1, marginRight: 10}]} define={'none'}>
+                <CBText style={[appStyles.text, {fontSize: dimens.xLargeText, fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>Xác thực thông tin</CBText>
+            </CBView>
+        );
+    }
+    const renderLeftButton = () => {
+        return <CBView style={{height: 1}} define={'none'}/>;
+    }
+
+    const renderRightButton = () => {
+        return (
+            <Fragment>
+                <CBTouchableOpacity style={[appStyles.action, {marginRight: 5}]} define={'none'} onPress={onVerifyInput}>
+                    <CBIcon type={'ionicon'} name={'create-outline'} define={'icon'} size={30}/>
+                </CBTouchableOpacity>
+            </Fragment>
+        );
+    }
+
     return (
         <CBContainer>
             <CBView style={{flex: 1, paddingHorizontal: 30}} define={'none'}>
-                <CBText style={[appStyles.title, {marginTop: 10, alignSelf: 'center'}]}>Thông tin cá nhân</CBText>
-                {/*<CBScrollView*/}
-                {/*    style={[appStyles.content]}*/}
-                {/*    showsVerticalScrollmIndicator={false}*/}
-                {/*    refreshControl={<CBRefreshControl/>}*/}
-                {/*    define={'content'}>*/}
-                {/*    <FormikInput initialValues={{id: '', fullName: '', school: '', faculty: '', email: '', dayOfBirth: ''}}/>*/}
-                {/*</CBScrollView>*/}
-                {/*<ResetWalletPopup ref={resetWalletPopupRef}/>*/}
+                <CBHeader style={{backgroundColor: colors.backgroundColor, textAlign: 'left'}} title={renderTitle()} headerLeft={renderLeftButton()} headerRight={renderRightButton()}/>
+                <CBImage containerStyle={[appStyles.image, {alignSelf: 'center', marginTop: 120, width: moderateScale(240), height: moderateScale(240)}]} source={ImageUtil.getImage('pending')} resizeMode={'contain'}/>
+                <CBText style={[appStyles.text, {marginTop: 10, alignSelf: 'center'}]}>Thông tin của bạn đang được Admin xem xét và phê duyệt</CBText>
+                <CBTouchableOpacity style={{marginTop: 350, alignSelf: 'flex-end'}} onPress={onLogin}>
+                    <CBText>Về trang chủ</CBText>
+                </CBTouchableOpacity>
             </CBView>
 
         </CBContainer>

@@ -122,7 +122,7 @@ const RegisterContent = () => {
             console.log('Error saving new person: ', e);
         }
         if (confirmSrp === SRPValue) {
-            RootNavigation.navigate('LoginOrRegister');
+            RootNavigation.navigate('VerifyInput');
         } else {
             setErrorSrp('Không trùng khớp');
         }
