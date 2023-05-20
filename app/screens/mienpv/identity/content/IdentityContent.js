@@ -6,14 +6,16 @@ import {appStyles} from "configs/styles";
 import colors from "configs/colors";
 import dimens from "configs/dimens";
 import QRCode from "react-native-qrcode-svg";
+import CBGlobal from "globals/CBGlobal";
 
 const IdentityContent = ({defaultParam, onScanQRCode}) => {
 
     const {theme} = useTheme();
+    const {_id, address, name} = CBGlobal.userInfo;
     const renderTitle = () => {
         return (
             <CBView style={[appStyles.row, {flex: 1, marginLeft: 20, marginRight: 10}]} define={'none'}>
-                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>Hi, Mien PV</CBText>
+                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>{`Xin chào, ${name}`}</CBText>
             </CBView>
         );
     }
@@ -48,7 +50,7 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
                         />
                     </CBView>
                     <CBView style={{marginTop: 50}}>
-                        <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', alignSelf: 'center'}]}>Mien PV</CBText>
+                        <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', alignSelf: 'center'}]}>{name}</CBText>
                     </CBView>
                     <CBView style={{alignSelf: 'center', padding: 15, marginTop: 40}} define={'none'}>
                         <QRCode

@@ -8,5 +8,6 @@ export default {
     ONE_SIGNAL_REST_API_KEY: 'YTAyNjUxZjYtMDM0Yi00MWVjLTg4NGItMmJlZjE2NmI3YjEz',
 
     REFRESH_TOKEN_URL: '',
-    API_URL: 'http://localhost:8000'
+
+    API_URL: 'http://161.97.133.246:8000'
 }

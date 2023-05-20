@@ -1,11 +1,18 @@
 import React from 'react';
-import {Alert, Keyboard} from 'react-native';
+import {Alert, DeviceEventEmitter, Keyboard, Platform} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppStore from 'stores/AppStore';
 
 import LoginOrRegisterContent from 'screens/mienpv/auth/content/LoginOrRegisterContent';
 
 import Base from 'screens/Base';
+import StudentStore from "stores/StudentStore";
+import CBGlobal from "globals/CBGlobal";
+import JsonUtil from "utils/JsonUtil";
+import CBHelper from "helpers/CBHelper";
+import {PERMISSIONS, request} from "react-native-permissions";
+import CBSyncHandler from "handlers/CBSyncHandler";
+import CBRunHandler from "handlers/CBRunHandler";
 
 export default class LoginOrRegister extends Base {
 
