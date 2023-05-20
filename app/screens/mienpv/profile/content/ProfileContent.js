@@ -8,7 +8,7 @@ import {appStyles} from 'configs/styles';
 import {strings} from 'controls/i18n';
 import dimens from 'configs/dimens';
 import {observer} from 'mobx-react';
-import CBGlobal from "globals/CBGlobal";
+import CBGlobal from 'globals/CBGlobal';
 
 const BodyBlock = observer(({style, contentStyle, code, type, name, color, size, onPress}) => {
 
@@ -53,7 +53,7 @@ const ProfileContent = ({defaultParam, onPress, onLogout, onPressUrl, onEditProf
             <CBView style={[appStyles.row, {paddingVertical: 15, paddingHorizontal: 30, marginTop: dimens.statusBar}]} define={'none'}>
                 <CBTouchableOpacity style={{flex: 1, marginRight: 15}} define={'none'} onPress={onEditProfile}>
                     <CBView style={appStyles.row} define={'none'}>
-                        <CBText style={[appStyles.title, {color: '#FFFFFF'}]} allowFontScaling={false} define={'none'}>{name}</CBText>
+                        <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, color: '#FFFFFF'}]} allowFontScaling={false} define={'none'}>{name}</CBText>
                         {status === 'verified' ? <CBIcon containerStyle={{marginLeft: 5}} type={'material'} name={'verified'} color={'#FFFFFF'} size={20}/> : null}
                     </CBView>
                     <CBView style={appStyles.row}>
