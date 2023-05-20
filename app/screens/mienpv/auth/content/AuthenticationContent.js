@@ -5,11 +5,11 @@ import {strings} from "controls/i18n";
 import RootNavigation from "screens/RootNavigation";
 import dimens from "configs/dimens";
 
-const AuthenticationContent = ({onRegister, onSRPLogin, onClose, onTermsAndConditions}) => {
+const AuthenticationContent = ({onRegister, onSRPLogin, onClose, onTermsAndConditions, onBlur}) => {
 
     return (
         <CBContainer>
-            <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'} onPress={this.onBlur}>
+            <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'} onPress={onBlur}>
                 <CBView style={{flex: 1, paddingVertical: 15, paddingHorizontal: 30}} define={'none'}>
                     <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 30, alignSelf: 'center'}]}>{strings('text_title_auth')}</CBText>
                     <CBText style={[appStyles.subtext, {marginTop: 10, alignSelf: 'center'}]} define={'subtext'}>{strings('text_subtitle_auth')}</CBText>

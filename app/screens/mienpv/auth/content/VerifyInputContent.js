@@ -1,11 +1,13 @@
 import React, {useRef, useState} from 'react';
-import {CBAction, CBAvatar, CBButton, CBContainer, CBInput, CBRefreshControl, CBScrollView, CBText, CBView} from 'components';
+import {CBAction, CBAvatar, CBButton, CBContainer, CBInput, CBImage, CBRefreshControl, CBScrollView, CBText, CBView} from 'components';
 import ResetWalletPopup from 'screens/popup/ResetWalletPopup';
 import {useTheme} from 'react-native-elements';
 import {strings} from "controls/i18n";
 import {appStyles} from "configs/styles";
 import {Formik} from "formik";
 import * as yup from 'yup';
+import {moderateScale} from "utils/ThemeUtil";
+import ImageUtil from "utils/ImageUtil";
 
 const FormikInput = ({initialValues, onPending}) => {
     const validationSchema = yup.object({
@@ -29,20 +31,28 @@ const FormikInput = ({initialValues, onPending}) => {
             {
                 ({handleChange, handleSubmit, values, errors}) => (
                     <>
-                        <CBText style={[appStyles.text, {marginTop: 10, marginBottom: 10}]} define={'subtext'}>{'ID'}</CBText>
-                        <CBInput
-                            style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập Id'}
-                            returnKeyType={'go'}
-                            autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.id}
-                            error={errors.id}
-                            onChangeText={handleChange('id')}
-                            onSubmitEditing={handleSubmit}
-                        />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Họ và tên'}</CBText>
+                        <CBView style={[appStyles.row]}>
+                            <CBImage containerStyle={[appStyles.image, {width: moderateScale(100), height: moderateScale(100)}]} source={ImageUtil.getImage('upload_avatar')} resizeMode={'contain'}/>
+                            <CBView style={[appStyles.row, {marginLeft: 35}]}>
+                                <CBText style={[appStyles.text, {marginTop: 10, marginRight: 10, marginBottom: 10}]} define={'subtext'}>{'ID'}</CBText>
+                                <CBInput
+                                    inputContainerStyle={{width: '55%', marginTop: 15}}
+                                    style={{width: '100%', marginTop: 5}}
+                                    placeholder={'Nhập Id'}
+                                    returnKeyType={'go'}
+                                    autoCapitalize={'none'}
+                                    secureTextEntry={!togglePassword}
+                                    maxLength={64}
+                                    value={values.id}
+                                    error={errors.id}
+                                    onChangeText={handleChange('id')}
+                                    onSubmitEditing={handleSubmit}
+                                />
+                            </CBView>
+
+                        </CBView>
+
+                        <CBText style={[appStyles.text, {marginBottom: 10, marginTop: 20}]} define={'subtext'}>{'Họ và tên'}</CBText>
                         <CBInput
                             style={{width: '100%', marginTop: 5}}
                             placeholder={'Nhập họ và tên'}
@@ -123,7 +133,7 @@ const VerifyInputContent = ({defaultParam, onPending}) => {
     return (
         <CBContainer>
             <CBView style={{flex: 1, paddingHorizontal: 30}} define={'none'}>
-                <CBText style={[appStyles.title, {marginTop: 10, alignSelf: 'center'}]}>Thông tin cá nhân</CBText>
+                <CBText style={[appStyles.title, {marginBottom: 20, marginTop: 15, textAlign: 'center'}]}>{'Điền thông tin'}</CBText>
                 <CBScrollView
                     style={[appStyles.content]}
                     showsVerticalScrollIndicator={false}

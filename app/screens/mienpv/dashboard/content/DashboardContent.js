@@ -69,8 +69,8 @@ const DashboardContent = ({onLogin}) => {
                             </CBView>
                         </CBView>
                         <CBView style={{marginTop: 5}}>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>NGUYỄN VĂN</CBText>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>A</CBText>
+                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>PHẠM VÕ</CBText>
+                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>MIÊN</CBText>
                         </CBView>
                         <CBView style={{marginTop: 5}}>
                             <CBText style={[appStyles.subtext, {fontFamily: 'GoogleSans-Medium'}]}>Đại học - chính quy</CBText>
@@ -89,7 +89,7 @@ const DashboardContent = ({onLogin}) => {
                         </CBView>
                     </CBView>
                     <CBView>
-                        <CBImage containerStyle={[appStyles.image, {width: moderateScale(100), height: moderateScale(100)}]} source={ImageUtil.getImage('student')} resizeMode={'contain'}/>
+                        <CBImage containerStyle={[appStyles.image, {width: moderateScale(100), height: moderateScale(100)}]} source={ImageUtil.getImage('avatar')} resizeMode={'contain'}/>
                     </CBView>
                 </CBView>
 
@@ -121,13 +121,13 @@ const DashboardContent = ({onLogin}) => {
             <CBView style={{padding: 15, marginTop: 30}}>
                 {renderCard()}
             </CBView>
-            <CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 30, paddingHorizontal: 15, color: colors.primaryColor}]}>Thông tin sinh viên</CBText>
-            <CBRollView
-                contentContainerStyle={{paddingHorizontal: 15, paddingVertical: 15}}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}>
-                {studyInfo.map(renderStudy)}
-            </CBRollView>
+            {/*<CBText style={[appStyles.title, {fontSize: dimens.xxLargeText, marginTop: 30, paddingHorizontal: 15, color: colors.primaryColor}]}>Thông tin sinh viên</CBText>*/}
+            {/*<CBRollView*/}
+            {/*    contentContainerStyle={{paddingHorizontal: 15, paddingVertical: 15}}*/}
+            {/*    horizontal={true}*/}
+            {/*    showsHorizontalScrollIndicator={false}>*/}
+            {/*    {studyInfo.map(renderStudy)}*/}
+            {/*</CBRollView>*/}
         </CBContainer>
     );
 };

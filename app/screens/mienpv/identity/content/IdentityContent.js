@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import { Linking } from 'react-native';
 import {CBAvatar, CBButton, CBContainer, CBHeader, CBIcon, CBText, CBTouchableOpacity, CBView} from 'components';
 import {useTheme} from 'react-native-elements';
 import {appStyles} from "configs/styles";
@@ -51,11 +52,11 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
                     </CBView>
                     <CBView style={{alignSelf: 'center', padding: 15, marginTop: 40}} define={'none'}>
                         <QRCode
-                            value={'http://onelink.to/99bxau'}
+                            value={'http://localhost:3000/portal/account'}
                             size={200}/>
                     </CBView>
                     <CBView style={{padding: 40}}>
-                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.primaryColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'}/>
+                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.primaryColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'} onPress={() => Linking.openURL('http://localhost:3000/portal/account')}/>
                     </CBView>
                 </CBView>
             </CBView>

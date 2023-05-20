@@ -9,7 +9,9 @@ import * as yup from 'yup';
 import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RootNavigation from 'screens/RootNavigation';
+import Clipboard from '@react-native-clipboard/clipboard';
 import {helpers} from "configs/themes";
+import Toast from "react-native-simple-toast";
 
 const FormikPassword = ({initialValues, onConfirmPassword}) => {
     const formikRef = useRef(null);
@@ -34,7 +36,6 @@ const FormikPassword = ({initialValues, onConfirmPassword}) => {
     const onFieldFocus = (name) => () => {
         formikRef.current.setFieldError(name, '');
     };
-
 
     return (
         <Formik
@@ -141,6 +142,11 @@ const RegisterContent = () => {
         setConfirmSrp(confirmSrp);
     };
 
+    const onCopySrp = (srpValue) => () => {
+        Clipboard.setString(srpValue);
+        Toast.show(strings('toast_copied'), Toast.SHORT);
+    };
+
     return (
         <CBContainer>
             <CBView>
@@ -165,8 +171,11 @@ const RegisterContent = () => {
                         <CBText style={[appStyles.title, { marginTop: 30, alignSelf: 'center'}]} >{strings('text_protect_wallet2')}</CBText>
                         <CBText style={[appStyles.title, { marginTop: 5, alignSelf: 'center'}]} >{strings('text_protect_wallet3')}</CBText>
                         <CBText style={[appStyles.note, { fontSize: dimens.normalText, marginTop: 10, alignSelf: 'center'}]} >{strings('text_remind_srp')}</CBText>
-                        <CBView style={[appStyles.outline, {padding: 15, marginTop: 30, borderColor: colors.primaryColor, borderRadius: 16}]}>
-                            <CBText style={[appStyles.text, {fontSize: dimens.largeText,padding: 6}]} selectable={true}>{srp?.join(' ')}</CBText>
+                        <CBView style={[appStyles.outline, appStyles.row, {padding: 15, marginTop: 30, borderColor: colors.primaryColor, borderRadius: 16}]}>
+                            <CBText style={[appStyles.text, {flex: 1, fontSize: dimens.largeText,padding: 6}]} selectable={true}>{srp?.join(' ')}</CBText>
+                            <CBTouchableOpacity onPress={onCopySrp(srp?.join(' '))}>
+                                <CBIcon type={'material-community'} name={'content-copy'} size={20}/>
+                            </CBTouchableOpacity>
                         </CBView>
                         <CBButton containerStyle={{marginTop: 45}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Tiếp tục'} onPress={onChangeTab(2)}/>
                     </CBView>

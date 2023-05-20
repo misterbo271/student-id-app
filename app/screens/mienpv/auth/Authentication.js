@@ -51,7 +51,7 @@ export default class Authentication extends Base {
 
     render() {
         return (
-            <AuthenticationContent onRegister={this.onRegister} onSRPLogin={this.onSRPLogin} onClose={this.onClose} onTermsAndConditions={this.onTermsAndConditions}/>
+            <AuthenticationContent onRegister={this.onRegister} onSRPLogin={this.onSRPLogin} onClose={this.onClose} onTermsAndConditions={this.onTermsAndConditions} onBlur={this.onBlur}/>
         );
     }
 }

@@ -12,6 +12,7 @@ import {strings} from 'controls/i18n';
 import dimens from 'configs/dimens';
 
 import Base from 'screens/Base';
+import axios from "axios";
 
 const anchor = Platform.select({android: 5, ios: dimens.statusBar + 5});
 const top = (dimens.heightScreen / 2) + (dimens.widthScreen / 2);
@@ -145,8 +146,54 @@ export default class ScanQRCode extends Base {
 
     onBarCodeReadDebounce = debounce(this.onBarCodeRead, 300, {leading: true, trailing: false});
 
+    handleQRScanned = async (event) => {
+        try {
+            const loginUrl = event.data;
+            this.setState({isLoading: true});
+
+            // Parse the query parameters from the login URL
+            const urlSearchParams = new URLSearchParams(loginUrl.split('?')[1]);
+            const username = urlSearchParams.get('username');
+            const password = urlSearchParams.get('password');
+
+            // Send a POST request to the login endpoint with the username and password parameters
+            const response = await fetch('https://example.com/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+
+            // Handle the response here
+        } catch (error) {
+            console.error(error);
+        } finally {
+            this.setState({isLoading: true});
+        }
+    };
+
+    onLogin = (email, password) => () => {
+        const url = 'http://localhost:3000/session/signin';
+        const data = {
+            email: email,
+            password: password
+        };
+        axios.post(url, data)
+            .then((response) => {
+                // Xử lý kết quả trả về nếu đăng nhập thành công
+                console.log(`mienpv :: ${JSON.stringify(response.data)}`);
+                //console.log(response.data);
+            })
+            .catch((error) => {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            });
+
+        // return axios.post(url, data);
+    };
+
     onReadCode = (event) => {
-        this.onSuccess({value: event.nativeEvent.codeStringValue});
+        // this.onSuccess({value: event.nativeEvent.codeStringValue});
+        this.onLogin('admin@gmail.com', '123456');
     };
 
     onReadCodeDebounce = debounce(this.onReadCode, 300, {leading: true, trailing: false});

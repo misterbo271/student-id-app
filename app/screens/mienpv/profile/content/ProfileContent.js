@@ -23,7 +23,7 @@ const BodyBlock = observer(({style, contentStyle, code, type, name, color, size,
 });
 
 
-const ProfileContent = ({defaultParam, onPress, onLogout, onPressUrl}) => {
+const ProfileContent = ({defaultParam, onPress, onLogout, onPressUrl, onEditProfile}) => {
 
     const {theme} = useTheme();
     const cbActionSheetRef = useRef(null);
@@ -49,7 +49,7 @@ const ProfileContent = ({defaultParam, onPress, onLogout, onPressUrl}) => {
     return (
         <CBView style={{flex: 1, backgroundColor: theme.colors.primary}} define={'none'}>
             <CBView style={[appStyles.row, {paddingVertical: 15, paddingHorizontal: 30, marginTop: dimens.statusBar}]} define={'none'}>
-                <CBTouchableOpacity style={{flex: 1, marginRight: 15}} define={'none'}>
+                <CBTouchableOpacity style={{flex: 1, marginRight: 15}} define={'none'} onPress={onEditProfile}>
                     <CBView style={appStyles.row} define={'none'}>
                         <CBText style={[appStyles.title, {color: '#FFFFFF'}]} allowFontScaling={false} define={'none'}>{'Mien PV'}</CBText>
                         <CBIcon containerStyle={{marginLeft: 5}} type={'ionicon'} name={'create-outline'} color={'#FFFFFF'} size={20}/>

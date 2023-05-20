@@ -14,6 +14,8 @@ import Introduction from 'screens/mienpv/auth/Introduction';
 import Dashboard from "screens/mienpv/dashboard/Dashboard";
 import Profile from "screens/mienpv/profile/Profile";
 import ScanIdentity from "screens/mienpv/identity/ScanIdentity";
+import VerifyInput from "screens/mienpv/auth/VerifyInput";
+import Pending from 'screens/mienpv/auth/Pending';
 
 const Stack = createStackNavigator();
 export const UserStack = () => {
@@ -53,6 +55,8 @@ export const UserStack = () => {
             <Stack.Screen name={'Dashboard'} component={Dashboard} options={{headerShown: false}}/>
             <Stack.Screen name={'Profile'} component={Profile} options={{headerShown: false}}/>
             <Stack.Screen name={'ScanIdentity'} component={ScanIdentity} options={{headerShown: false}}/>
+            <Stack.Screen name={'VerifyInput'} component={VerifyInput} options={{title: 'Thông tin cá nhân'}}/>
+            <Stack.Screen name={'Pending'} component={Pending} options={{headerShown: false}}/>
         </Stack.Navigator>
     );
 };

@@ -34,9 +34,13 @@ export default class Profile extends Base {
         if (url) CBHandler.openUrl(url);
     };
 
+    onEditProfile = () => {
+        RootNavigation.navigate('VerifyInput');
+    };
+
 
     render() {
-        return <ProfileContent defaultParam={this.defaultParam} onPress={this.onPress} onLogout={this.onLogout} onPressUrl={this.onPressUrl}/>;
+        return <ProfileContent defaultParam={this.defaultParam} onPress={this.onPress} onLogout={this.onLogout} onPressUrl={this.onPressUrl} onEditProfile={this.onEditProfile}/>;
     }
 
 }

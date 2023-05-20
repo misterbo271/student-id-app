@@ -8,6 +8,7 @@ import {appStyles} from "configs/styles";
 import {Formik} from "formik";
 import * as yup from 'yup';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {CBTouchableWithoutFeedback} from "app/components";
 
 const FormikInput = ({initialValues, onLogin}) => {
     const validationSchema = yup.object({
@@ -52,7 +53,7 @@ const FormikInput = ({initialValues, onLogin}) => {
     )
 }
 
-const LoginOrRegisterContent = ({onLogin}) => {
+const LoginOrRegisterContent = ({onLogin, onBlur}) => {
 
     const {theme} = useTheme();
     const resetWalletPopupRef = useRef();
@@ -63,6 +64,7 @@ const LoginOrRegisterContent = ({onLogin}) => {
 
     return (
         <CBContainer>
+            <CBTouchableWithoutFeedback style={{flex: 1}} define={'none'} onPress={onBlur}>
             <CBView style={{flex: 1, paddingVertical: 55, paddingHorizontal: 30}} define={'none'}>
                 <CBAvatar
                     size={140}
@@ -79,7 +81,7 @@ const LoginOrRegisterContent = ({onLogin}) => {
                 </CBView>
                 <ResetWalletPopup ref={resetWalletPopupRef}/>
             </CBView>
-
+            </CBTouchableWithoutFeedback>
         </CBContainer>
     );
 };

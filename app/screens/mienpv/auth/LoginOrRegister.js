@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from 'react-native';
+import {Alert, Keyboard} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppStore from 'stores/AppStore';
 
@@ -20,6 +20,10 @@ export default class LoginOrRegister extends Base {
     componentWillUnmount() {
         super.componentWillUnmount();
     }
+
+    onBlur = () => {
+        Keyboard.dismiss();
+    };
 
     onLogin = async (values) => {
         try {
@@ -42,7 +46,7 @@ export default class LoginOrRegister extends Base {
 
     render() {
         return (
-            <LoginOrRegisterContent onLogin={this.onLogin}/>
+            <LoginOrRegisterContent onLogin={this.onLogin} onBlur={this.onBlur}/>
         );
     }
 }
