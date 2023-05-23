@@ -86,7 +86,7 @@ const PendingContent = ({defaultParam, onVerifyInput, onLogin}) => {
                 <CBHeader style={{backgroundColor: colors.backgroundColor, textAlign: 'left'}} title={renderTitle()} headerLeft={renderLeftButton()} headerRight={renderRightButton()}/>
                 <CBImage containerStyle={[appStyles.image, {alignSelf: 'center', marginTop: 120, width: moderateScale(240), height: moderateScale(240)}]} source={ImageUtil.getImage('pending')} resizeMode={'contain'}/>
                 <CBText style={[appStyles.text, {marginTop: 10, alignSelf: 'center'}]}>Thông tin của bạn đang được Admin xem xét và phê duyệt</CBText>
-                <CBTouchableOpacity style={{marginTop: 350, alignSelf: 'flex-end'}} onPress={onLogin}>
+                <CBTouchableOpacity style={{marginTop: 300, alignSelf: 'flex-end'}} onPress={onLogin}>
                     <CBText>Về trang chủ</CBText>
                 </CBTouchableOpacity>
             </CBView>

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { Linking } from 'react-native';
 import {CBAvatar, CBButton, CBContainer, CBHeader, CBIcon, CBText, CBTouchableOpacity, CBView} from 'components';
 import {useTheme} from 'react-native-elements';
@@ -7,11 +7,20 @@ import colors from "configs/colors";
 import dimens from "configs/dimens";
 import QRCode from "react-native-qrcode-svg";
 import CBGlobal from "globals/CBGlobal";
+import io from "socket.io-client";
+import socketIOClient from "socket.io-client";
 
 const IdentityContent = ({defaultParam, onScanQRCode}) => {
 
     const {theme} = useTheme();
     const {_id, address, name} = CBGlobal.userInfo;
+    const [testData, setTestData] = useState();
+    const socket = io('http://172.20.10.3:3060');
+    // useEffect(() => {
+    //     let roomno = 1;
+    //
+    //
+    // }, []);
     const renderTitle = () => {
         return (
             <CBView style={[appStyles.row, {flex: 1, marginLeft: 20, marginRight: 10}]} define={'none'}>
@@ -37,6 +46,11 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
         );
     }
 
+    const testSocket = () => {
+        socket.emit('joinRoom', 'StudentID');
+        socket.emit('dataEvent',  _id );
+    }
+
     return (
         <CBContainer>
             <CBHeader style={{backgroundColor: colors.backgroundColor, textAlign: 'left'}} title={renderTitle()} headerLeft={renderLeftButton()} headerRight={renderRightButton()}/>
@@ -59,6 +73,9 @@ const IdentityContent = ({defaultParam, onScanQRCode}) => {
                     </CBView>
                     <CBView style={{padding: 40}}>
                         <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.primaryColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'} onPress={() => Linking.openURL('http://localhost:3000/portal/account')}/>
+                    </CBView>
+                    <CBView style={{padding: 40}}>
+                        <CBButton buttonStyle={[appStyles.circle, {backgroundColor: colors.primaryColor, borderRadius: 20, marginTop: 15}]} title={'Mã QR của bạn ở đây'} onPress={testSocket} />
                     </CBView>
                 </CBView>
             </CBView>

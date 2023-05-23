@@ -30,7 +30,7 @@ export default class CBSync {
 
 
     static syncProfile(callback) {
-        const param = {id: 1812336};
+        const param = {id: 1813057};
 
         const auth = new CBApi();
         auth.getStudent(param, false, false).then(async ({status, data}) => {

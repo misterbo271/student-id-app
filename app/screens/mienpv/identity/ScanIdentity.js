@@ -3,10 +3,27 @@ import {CBIcon, CBText, CBTouchableOpacity, CBView} from 'components/index';
 import {appStyles} from 'configs/styles';
 import {strings} from 'controls/i18n';
 import dimens from 'configs/dimens';
+import { io } from 'socket.io-client';
 
 import ScanQRCode from 'screens/ScanQRCode';
+import Base from "screens/Base";
+import {RNCamera} from "react-native-camera";
+import ScanIdentityContent from "screens/mienpv/identity/content/ScanIdentityContent";
+import CBGlobal from "globals/CBGlobal";
+
+const socket = io('http://172.20.10.3:3060/');
 
 export default class ScanIdentity extends ScanQRCode {
+
+    constructor(props) {
+        super(props);
+        this.camera = React.createRef();
+        this.state = {
+            scannedId: null,
+
+        };
+    }
+
 
     // call(param) {
     //     const api = new CBBms();
@@ -148,6 +165,21 @@ export default class ScanIdentity extends ScanQRCode {
     onFinding = () => this.setState({index: 0});
 
     onBoarding = () => this.setState({index: 1});
+
+
+    handleBarcodeScan = ({ data }) => {
+        const {_id, address, name} = CBGlobal.userInfo;
+        socket.emit('joinRoom', 'StudentID');
+        socket.emit('dataEvent',  _id );
+    };
+
+
+    // render() {
+    //     const {scannedId} = this.state;
+    //     return (
+    //         <ScanIdentityContent defaultParam={this.defaultParam} onScanQRCode={this.handleBarcodeScan}/>
+    //     );
+    // }
 
     renderFooter() {
         const {theme} = this.context;

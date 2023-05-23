@@ -1,14 +1,13 @@
 import React, {Fragment} from 'react';
 import {CBAvatar, CBContainer, CBHeader, CBIcon, CBImage, CBRollView, CBText, CBTouchableOpacity, CBView} from 'components';
 import {useTheme} from 'react-native-elements';
-import {appStyles} from "configs/styles";
-import colors from "configs/colors";
-import {moderateScale} from "utils/ThemeUtil";
-import ImageUtil from "utils/ImageUtil";
-import dimens from "configs/dimens";
-import QRCode from "react-native-qrcode-svg";
-import StudentStore from 'stores/StudentStore';
-import CBGlobal from "globals/CBGlobal";
+import {appStyles} from 'configs/styles';
+import colors from 'configs/colors';
+import {moderateScale} from 'utils/ThemeUtil';
+import ImageUtil from 'utils/ImageUtil';
+import dimens from 'configs/dimens';
+import QRCode from 'react-native-qrcode-svg';
+import CBGlobal from 'globals/CBGlobal';
 
 const DashboardContent = ({defaultParam}) => {
     const {_id, address, name} = CBGlobal.userInfo;
@@ -70,8 +69,8 @@ const DashboardContent = ({defaultParam}) => {
                             </CBView>
                         </CBView>
                         <CBView style={{marginTop: 5}}>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>PHẠM VÕ</CBText>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{name.toUpperCase()}</CBText>
+                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{name?.split(' ')[0].toUpperCase()}</CBText>
+                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{name?.split(' ')[1].toUpperCase()}</CBText>
                         </CBView>
                         <CBView style={{marginTop: 5}}>
                             <CBText style={[appStyles.subtext, {fontFamily: 'GoogleSans-Medium'}]}>Đại học - chính quy</CBText>

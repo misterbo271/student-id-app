@@ -13,6 +13,8 @@ import dimens from 'configs/dimens';
 
 import Base from 'screens/Base';
 import axios from "axios";
+import { io } from 'socket.io-client';
+import CBGlobal from "globals/CBGlobal";
 
 const anchor = Platform.select({android: 5, ios: dimens.statusBar + 5});
 const top = (dimens.heightScreen / 2) + (dimens.widthScreen / 2);
@@ -32,6 +34,8 @@ const scanAreaX = leftMargin / CAMERA_VIEW_HEIGHT;
 const scanAreaY = topMargin / CAMERA_VIEW_WIDTH;
 const scanAreaWidth = frameWidth / CAMERA_VIEW_HEIGHT;
 const scanAreaHeight = frameHeight / CAMERA_VIEW_WIDTH;
+
+const socket = io('http://172.20.10.3:3060/');
 
 export default class ScanQRCode extends Base {
 
@@ -141,7 +145,8 @@ export default class ScanQRCode extends Base {
     onGoogleVisionBarcodesDetectedDebounce = debounce(this.onGoogleVisionBarcodesDetected, 300, {leading: true, trailing: false});
 
     onBarCodeRead = (event) => {
-        this.onSuccess({value: event.data, type: event.type});
+        this.handleBarcodeScan({event});
+        RootNavigation.goBack();
     };
 
     onBarCodeReadDebounce = debounce(this.onBarCodeRead, 300, {leading: true, trailing: false});
@@ -193,7 +198,14 @@ export default class ScanQRCode extends Base {
 
     onReadCode = (event) => {
         // this.onSuccess({value: event.nativeEvent.codeStringValue});
-        this.onLogin('admin@gmail.com', '123456');
+       this.handleBarcodeScan({event});
+        RootNavigation.goBack();
+    };
+
+    handleBarcodeScan = ({ data }) => {
+        const {_id, address, name} = CBGlobal.userInfo;
+        socket.emit('joinRoom', 'StudentID');
+        socket.emit('dataEvent',  _id );
     };
 
     onReadCodeDebounce = debounce(this.onReadCode, 300, {leading: true, trailing: false});
@@ -236,7 +248,12 @@ export default class ScanQRCode extends Base {
                         <CBText style={[appStyles.subtext, {color: '#FFFFFF', textAlign: 'center'}]} define={'none'}>{`${strings('text_allow_camera')}\n${strings('text_description_camera')}`}</CBText>
                         <CBButton containerStyle={{marginTop: 15}} buttonStyle={{borderColor: '#FFFFFF'}} titleStyle={{color: '#FFFFFF'}} type={'outline'} title={strings('action_allow_permission')} onPress={this.onAllowPermission}/>
                     </CBView> : null}
-                    {toggleCamera ? <Fragment>
+                    <Fragment>
+                        {/*<RNCamera*/}
+                        {/*    style={{ flex: 1 }}*/}
+                        {/*    onBarCodeRead={this.handleBarcodeScan}*/}
+                        {/*    captureAudio={false}*/}
+                        {/*/>*/}
                         {!toggleModule ? <CameraScreen
                                 ref={this.camera}
                                 style={{flex: 1}}
@@ -284,7 +301,7 @@ export default class ScanQRCode extends Base {
                         {/*{toggleModule ? <CBTouchableOpacity style={[appStyles.action, {position: 'absolute', top: top + 10, left: left + 5}]} define={'none'} onPress={this.toggleVision}>
                             <CBIcon type={'ionicon'} name={toggleVision ? 'eye-off-outline' : 'eye-outline'} color={'#FFFFFF'} size={25}/>
                         </CBTouchableOpacity> : null}*/}
-                    </Fragment> : null}
+                    </Fragment>
                     <CBTouchableOpacity style={[appStyles.action, {position: 'absolute', top: anchor, left: 5}]} define={'none'} onPress={this.onExit}>
                         <CBIcon type={'ionicon'} name={'close-outline'} color={'#FFFFFF'} size={30}/>
                     </CBTouchableOpacity>
