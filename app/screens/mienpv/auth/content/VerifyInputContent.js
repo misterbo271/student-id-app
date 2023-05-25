@@ -10,6 +10,9 @@ import {moderateScale} from "utils/ThemeUtil";
 import ImageUtil from "utils/ImageUtil";
 
 const FormikInput = ({initialValues, onPending}) => {
+
+    const formikRef = useRef(null);
+    const noteInputRef = useRef(null);
     const validationSchema = yup.object({
         password: yup.string()
             .required(strings('error_empty_password'))
@@ -21,8 +24,30 @@ const FormikInput = ({initialValues, onPending}) => {
         setTogglePassword(!togglePassword);
     };
 
+    const onFieldClear = (name, defaultValue) => () => {
+        formikRef.current.setFieldValue(name, defaultValue);
+        formikRef.current.setFieldError(name, '');
+    };
+
+    const onFieldFocus = (name) => () => {
+        formikRef.current.setFieldError(name, '');
+    };
+
+    const onNextInput = (name) => () => {
+        switch (name) {
+            case 'note':
+                noteInputRef.current.focus();
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
+        <>
         <Formik
+            innerRef={formikRef}
+            enableReinitialize={true}
             initialValues={initialValues}
             //validationSchema={validationSchema}
             validateOnChange={false}
@@ -39,14 +64,15 @@ const FormikInput = ({initialValues, onPending}) => {
                                     inputContainerStyle={{width: '55%', marginTop: 15}}
                                     style={{width: '100%', marginTop: 5}}
                                     placeholder={'Nhập Id'}
-                                    returnKeyType={'go'}
+                                    returnKeyType={'next'}
                                     autoCapitalize={'none'}
-                                    secureTextEntry={!togglePassword}
+                                    // secureTextEntry={!togglePassword}
                                     maxLength={64}
                                     value={values.id}
-                                    error={errors.id}
+                                    // error={errors.id}
                                     onChangeText={handleChange('id')}
-                                    onSubmitEditing={handleSubmit}
+                                    onFocus={onFieldFocus('id')}
+                                    onSubmitEditing={onNextInput('fullName')}
                                 />
                             </CBView>
 
@@ -56,53 +82,49 @@ const FormikInput = ({initialValues, onPending}) => {
                         <CBInput
                             style={{width: '100%', marginTop: 5}}
                             placeholder={'Nhập họ và tên'}
-                            returnKeyType={'go'}
+                            returnKeyType={'next'}
                             autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
                             maxLength={64}
                             value={values.fullName}
                             error={errors.fullName}
                             onChangeText={handleChange('fullName')}
-                            onSubmitEditing={handleSubmit}
+                            onSubmitEditing={onNextInput('phoneNumber')}
                         />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Đại học'}</CBText>
+                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Số điện thoại'}</CBText>
                         <CBInput
                             style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập tên trường'}
-                            returnKeyType={'go'}
+                            placeholder={'Nhập số điện thoại'}
+                            returnKeyType={'next'}
                             autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
-                            maxLength={64}
-                            value={values.school}
-                            error={errors.school}
-                            onChangeText={handleChange('school')}
-                            onSubmitEditing={handleSubmit}
+                            maxLength={12}
+                            value={values.phoneNumber}
+                            error={errors.phoneNumber}
+                            onChangeText={handleChange('phoneNumber')}
+                            onSubmitEditing={onNextInput('address')}
                         />
-                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Khoa'}</CBText>
+                        <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Địa chỉ'}</CBText>
                         <CBInput
                             style={{width: '100%', marginTop: 5}}
-                            placeholder={'Nhập khoa'}
-                            returnKeyType={'go'}
+                            placeholder={'Nhập địa chỉ'}
+                            returnKeyType={'next'}
                             autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
                             maxLength={64}
-                            value={values.faculty}
-                            error={errors.faculty}
-                            onChangeText={handleChange('faculty')}
-                            onSubmitEditing={handleSubmit}
+                            value={values.address}
+                            error={errors.address}
+                            onChangeText={handleChange('address')}
+                            onSubmitEditing={onNextInput('email')}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 15}]} define={'subtext'}>{'Email'}</CBText>
                         <CBInput
                             style={{width: '100%', marginTop: 5}}
                             placeholder={'Nhập email'}
-                            returnKeyType={'go'}
+                            returnKeyType={'next'}
                             autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
                             maxLength={64}
                             value={values.email}
                             error={errors.email}
                             onChangeText={handleChange('email')}
-                            onSubmitEditing={handleSubmit}
+                            onSubmitEditing={onNextInput('birthday')}
                         />
                         <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Ngày sinh'}</CBText>
                         <CBInput
@@ -110,19 +132,20 @@ const FormikInput = ({initialValues, onPending}) => {
                             placeholder={'Nhập ngày sinh'}
                             returnKeyType={'go'}
                             autoCapitalize={'none'}
-                            secureTextEntry={!togglePassword}
+                            // secureTextEntry={!togglePassword}
                             maxLength={64}
-                            value={values.dayOfBirth}
-                            error={errors.dayOfBirth}
-                            onChangeText={handleChange('dayOfBirth')}
+                            value={values.birthday}
+                            error={errors.birthday}
+                            onChangeText={handleChange('birthday')}
                             onSubmitEditing={handleSubmit}
                         />
-                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Submit'} onPress={handleSubmit}/>
+                        <CBButton containerStyle={{marginTop: 25}} buttonStyle={[appStyles.button, {borderRadius: 10}]} title={'Xác nhận'} onPress={handleSubmit}/>
                     </>
                 )
             }
         </Formik>
-    )
+            </>
+    );
 }
 
 const VerifyInputContent = ({defaultParam, onPending}) => {
@@ -139,7 +162,7 @@ const VerifyInputContent = ({defaultParam, onPending}) => {
                     showsVerticalScrollIndicator={false}
                     refreshControl={<CBRefreshControl/>}
                     define={'content'}>
-                    <FormikInput initialValues={{id: '', fullName: '', school: '', faculty: '', email: '', dayOfBirth: ''}} onPending={onPending}/>
+                    <FormikInput initialValues={{id: '', fullName: '', phoneNumber: '', address: '', email: '', birthday: ''}} onPending={onPending}/>
                 </CBScrollView>
                 {/*<ResetWalletPopup ref={resetWalletPopupRef}/>*/}
             </CBView>

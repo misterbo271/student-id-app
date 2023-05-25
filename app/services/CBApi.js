@@ -10,6 +10,10 @@ export default class CBApi extends CBService {
         return this.POST('/schools/create-students', body, showLoading, showError);
     }
 
+    submitStudent(body, showLoading = true, showError = true) {
+        return this.POST('/students/submit', body, showLoading, showError);
+    }
+
     getStudent(query, showLoading = true, showError = true) {
         return this.GET(`/students/student`, query, showLoading, showError);
     }
