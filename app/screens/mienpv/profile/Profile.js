@@ -35,7 +35,7 @@ export default class Profile extends Base {
     };
 
     onEditProfile = () => {
-        RootNavigation.navigate('VerifyInput');
+        RootNavigation.navigate('UpdateProfile');
     };
 
 

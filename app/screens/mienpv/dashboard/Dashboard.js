@@ -5,6 +5,7 @@ import Tracking from "screens/Tracking";
 import DashboardContent from 'screens/mienpv/dashboard/content/DashboardContent';
 import {DeviceEventEmitter, Platform} from "react-native";
 import CBHelper from "helpers/CBHelper";
+import StudentStore from "stores/StudentStore";
 
 export default class Dashboard extends Tracking {
 
@@ -29,7 +30,8 @@ export default class Dashboard extends Tracking {
     }
 
     load() {
-
+        StudentStore.setRefreshing(true);
+        StudentStore.fetchStudent();
     }
 
     // fetchStudent = () => {

@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import CBConstant from 'constants/CBConstant';
 import CBApi from 'services/CBApi';
+import CBGlobal from "globals/CBGlobal";
 
 class StudentStore {
     refreshing = false;
@@ -15,13 +16,15 @@ class StudentStore {
     }
 
     fetchStudent(callback, showLoading = false, showError = true) {
+        const { _id} = CBGlobal.userInfo;
         const param = {
-            id: 1812336
+            id: _id
         }
         const api = new CBApi();
         api.getStudent(param, showLoading, showError).then(({status, data}) => {
             if (status === CBConstant.STATUS_OK) {
                 this.studentInfo = data?.message || {};
+                
                 callback && callback();
             } else {
                 callback && callback();
