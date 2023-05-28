@@ -67,6 +67,7 @@ const FormikInput = ({initialValues, onUpdate}) => {
                                         placeholder={'Nhập Id'}
                                         returnKeyType={'next'}
                                         autoCapitalize={'none'}
+                                        disabled={true}
                                         // secureTextEntry={!togglePassword}
                                         maxLength={64}
                                         value={values.id.toString()}
@@ -85,6 +86,7 @@ const FormikInput = ({initialValues, onUpdate}) => {
                                 placeholder={'Nhập họ và tên'}
                                 returnKeyType={'next'}
                                 autoCapitalize={'none'}
+                                disabled={true}
                                 maxLength={64}
                                 value={values.fullName}
                                 error={errors.fullName}
@@ -102,18 +104,6 @@ const FormikInput = ({initialValues, onUpdate}) => {
                                 error={errors.phoneNumber}
                                 onChangeText={handleChange('phoneNumber')}
                                 onSubmitEditing={onNextInput('address')}
-                            />
-                            <CBText style={[appStyles.text, {marginBottom: 10}]} define={'subtext'}>{'Địa chỉ'}</CBText>
-                            <CBInput
-                                style={{width: '100%', marginTop: 5}}
-                                placeholder={'Nhập địa chỉ'}
-                                returnKeyType={'next'}
-                                autoCapitalize={'none'}
-                                maxLength={64}
-                                value={values.address}
-                                error={errors.address}
-                                onChangeText={handleChange('address')}
-                                onSubmitEditing={onNextInput('email')}
                             />
                             <CBText style={[appStyles.text, {marginBottom: 15}]} define={'subtext'}>{'Email'}</CBText>
                             <CBInput
@@ -154,12 +144,10 @@ const UpdateProfileContent = ({defaultParam, onUpdate}) => {
     const {theme} = useTheme();
     const {studentInfo} = StudentStore;
     const resetWalletPopupRef = useRef();
-    console.log(`mienpv23 :: ${JSON.stringify(studentInfo)}`);
 
     return (
         <CBContainer>
             <CBView style={{flex: 1, paddingHorizontal: 30}} define={'none'}>
-                <CBText style={[appStyles.title, {marginBottom: 20, marginTop: 15, textAlign: 'center'}]}>{'Điền thông tin'}</CBText>
                 <CBScrollView
                     style={[appStyles.content]}
                     showsVerticalScrollIndicator={false}

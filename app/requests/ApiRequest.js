@@ -28,4 +28,18 @@ export default class ApiRequest {
             callbackError && callbackError(error);
         });
     }
+
+
+    static updateStudent(param, callbackSuccess, callbackError, showLoading = true, showError = true) {
+        const api = new CBApi();
+        api.updateStudent(param, showLoading, showError).then(({status, data}) => {
+            if (status === CBConstant.STATUS_OK) {
+                callbackSuccess && callbackSuccess(data);
+            } else {
+                callbackError && callbackError(data);
+            }
+        }).catch((error) => {
+            callbackError && callbackError(error);
+        });
+    }
 }

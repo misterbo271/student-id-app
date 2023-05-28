@@ -8,6 +8,7 @@ import Parse from 'parse/react-native.js';
 import CBApi from "services/CBApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import JsonUtil from "utils/JsonUtil";
+import StudentStore from "stores/StudentStore";
 
 export default class CBSync {
 
@@ -30,7 +31,8 @@ export default class CBSync {
 
 
     static syncProfile(callback) {
-        const param = {id: 1813057};
+        const {studentId} = StudentStore;
+        const param = {id: studentId};
 
         const auth = new CBApi();
         auth.getStudent(param, false, false).then(async ({status, data}) => {

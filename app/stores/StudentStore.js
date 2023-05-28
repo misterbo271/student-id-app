@@ -6,9 +6,14 @@ import CBGlobal from "globals/CBGlobal";
 class StudentStore {
     refreshing = false;
     studentInfo = {};
+    studentId = null;
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setStudentId(studentId) {
+        this.studentId = studentId;
     }
 
     setRefreshing(refreshing) {
@@ -16,7 +21,7 @@ class StudentStore {
     }
 
     fetchStudent(callback, showLoading = false, showError = true) {
-        const { _id} = CBGlobal.userInfo;
+        const {_id} = CBGlobal.userInfo;
         const param = {
             id: _id
         }

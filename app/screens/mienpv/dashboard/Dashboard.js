@@ -6,7 +6,9 @@ import DashboardContent from 'screens/mienpv/dashboard/content/DashboardContent'
 import {DeviceEventEmitter, Platform} from "react-native";
 import CBHelper from "helpers/CBHelper";
 import StudentStore from "stores/StudentStore";
+import {observer} from "mobx-react";
 
+@observer
 export default class Dashboard extends Tracking {
 
     constructor(props) {
@@ -30,7 +32,6 @@ export default class Dashboard extends Tracking {
     }
 
     load() {
-        StudentStore.setRefreshing(true);
         StudentStore.fetchStudent();
     }
 
@@ -51,8 +52,9 @@ export default class Dashboard extends Tracking {
     // }
 
     render() {
+        const {studentInfo} = StudentStore;
         return (
-            <DashboardContent defaultParam={this.defaultParam}/>
+            <DashboardContent defaultParam={this.defaultParam} studentInfo={studentInfo}/>
         );
     }
 }

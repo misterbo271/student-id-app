@@ -12,6 +12,13 @@ import RootNavigation from 'screens/RootNavigation';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {helpers} from "configs/themes";
 import Toast from "react-native-simple-toast";
+import mnemonicWords from "mnemonic-words";
+import "react-native-get-random-values";
+
+// Inject the missing features with the ethers shims
+import "@ethersproject/shims";
+//import "./libs/shims";
+import {ethers} from 'ethers';
 
 const FormikPassword = ({initialValues, onConfirmPassword}) => {
     const formikRef = useRef(null);
@@ -106,17 +113,25 @@ const RegisterContent = () => {
         } catch (e) {
             console.log('Error saving new person: ', e);
         }
-        let rand = [];
-        for ( let i=0; i < 12; i++) {
-            rand[i] = mnemonicWords[Math.floor(Math.random() * mnemonicWords.length)];
-        }
+        // let rand = [];
+        // for ( let i=0; i < 12; i++) {
+        //     rand[i] = mnemonicWords[Math.floor(Math.random() * mnemonicWords.length)];
+        // }
+        const randomBytes = ethers.utils.randomBytes(20);
+        const rand = ethers.utils.entropyToMnemonic(randomBytes);
+        const address = ethers.utils.mnemonicToEntropy(rand);
         setSrp(rand);
+        try {
+            await AsyncStorage.setItem('address', address);
+        } catch (e) {
+            console.log('Error saving new person: ', e);
+        }
         setTab(1);
 
     };
 
     const onCreatePassword = async () => {
-        const SRPValue = srp?.join(' ');
+        const SRPValue = srp;
         try {
             await AsyncStorage.setItem('srp', SRPValue);
         } catch (e) {
@@ -172,8 +187,8 @@ const RegisterContent = () => {
                         <CBText style={[appStyles.title, { marginTop: 5, alignSelf: 'center'}]} >{strings('text_protect_wallet3')}</CBText>
                         <CBText style={[appStyles.note, { fontSize: dimens.normalText, marginTop: 10, alignSelf: 'center'}]} >{strings('text_remind_srp')}</CBText>
                         <CBView style={[appStyles.outline, appStyles.row, {padding: 15, marginTop: 30, borderColor: colors.primaryColor, borderRadius: 16}]}>
-                            <CBText style={[appStyles.text, {flex: 1, fontSize: dimens.largeText,padding: 6}]} selectable={true}>{srp?.join(' ')}</CBText>
-                            <CBTouchableOpacity onPress={onCopySrp(srp?.join(' '))}>
+                            <CBText style={[appStyles.text, {flex: 1, fontSize: dimens.largeText,padding: 6}]} selectable={true}>{srp}</CBText>
+                            <CBTouchableOpacity onPress={onCopySrp(srp)}>
                                 <CBIcon type={'material-community'} name={'content-copy'} size={20}/>
                             </CBTouchableOpacity>
                         </CBView>

@@ -18,4 +18,8 @@ export default class CBApi extends CBService {
         return this.GET(`/students/student`, query, showLoading, showError);
     }
 
+    updateStudent(body, showLoading = true, showError = true) {
+        return this.POST('/students/update', body, showLoading, showError);
+    }
+
 }

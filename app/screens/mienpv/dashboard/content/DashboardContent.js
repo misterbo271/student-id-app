@@ -8,9 +8,9 @@ import ImageUtil from 'utils/ImageUtil';
 import dimens from 'configs/dimens';
 import QRCode from 'react-native-qrcode-svg';
 import CBGlobal from 'globals/CBGlobal';
+import StudentStore from "stores/StudentStore";
 
-const DashboardContent = ({defaultParam}) => {
-    const {_id, address, name} = CBGlobal.userInfo;
+const DashboardContent = ({defaultParam, studentInfo}) => {
     const {theme} = useTheme();
 
     const renderTitle = () => {
@@ -21,7 +21,7 @@ const DashboardContent = ({defaultParam}) => {
                     size={50}
                     source={require('assets/images/avatar.png')}
                 />
-                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>{`Xin chào, ${name}`}</CBText>
+                <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Medium', marginTop: 15, marginLeft: 10, color: colors.primaryColor}]}>{`Xin chào, ${studentInfo.name}`}</CBText>
             </CBView>
         );
     }
@@ -60,7 +60,7 @@ const DashboardContent = ({defaultParam}) => {
                         <CBView style={[appStyles.row, {marginTop: 5}]}>
                             <CBView style={[appStyles.row, {flex: 1}]}>
                                 <CBView style={{alignSelf: 'center', marginTop: 5}} define={'none'}>
-                                    <QRCode value={address} size={35}/>
+                                    <QRCode value={studentInfo.address} size={35}/>
                                 </CBView>
                                 <CBView style={{marginLeft: 15}}>
                                     <CBText style={[appStyles.text, {fontSize: dimens.largeText, color: colors.hcmutTextColor}, {fontFamily: 'GoogleSans-Bold'}]}>THẺ SINH VIÊN</CBText>
@@ -69,8 +69,8 @@ const DashboardContent = ({defaultParam}) => {
                             </CBView>
                         </CBView>
                         <CBView style={{marginTop: 5}}>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{name?.split(' ')[0].toUpperCase()}</CBText>
-                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{name?.split(' ')[1].toUpperCase()}</CBText>
+                            <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{studentInfo.name?.split(' ')[0].toUpperCase()}</CBText>
+                            {studentInfo.name?.split('').length > 1 ? <CBText style={[appStyles.text, {fontFamily: 'GoogleSans-Bold'}]}>{studentInfo.name?.split(' ')[1].toUpperCase()}</CBText> : null}
                         </CBView>
                         <CBView style={{marginTop: 5}}>
                             <CBText style={[appStyles.subtext, {fontFamily: 'GoogleSans-Medium'}]}>Đại học - chính quy</CBText>
@@ -78,7 +78,7 @@ const DashboardContent = ({defaultParam}) => {
                         </CBView>
                         <CBView style={[appStyles.row]}>
                             <CBText style={[appStyles.subtext, {fontFamily: 'GoogleSans-Medium'}]}>MSSV</CBText>
-                            <CBText style={[appStyles.text, {fontSize: dimens.largeText, marginLeft: 5, fontFamily: 'GoogleSans-Bold'}]}>{_id}</CBText>
+                            <CBText style={[appStyles.text, {fontSize: dimens.largeText, marginLeft: 5, fontFamily: 'GoogleSans-Bold'}]}>{studentInfo._id}</CBText>
                         </CBView>
                         <CBView style={[appStyles.row]}>
                             <CBView style={{marginRight: 10}}>

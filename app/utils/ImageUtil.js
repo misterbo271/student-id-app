@@ -17,7 +17,8 @@ export default class ImageUtil {
         student: require('assets/images/student.png'),
         pending: require('assets/images/pending.png'),
         avatar: require('assets/images/avatar.png'),
-        upload_avatar: require('assets/images/uploadavatar.png')
+        upload_avatar: require('assets/images/uploadavatar.png'),
+        verified: require('assets/images/verified.png')
     };
 
     static getImage(imageUrl) {

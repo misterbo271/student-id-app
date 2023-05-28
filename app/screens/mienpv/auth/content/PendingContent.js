@@ -10,6 +10,7 @@ import {moderateScale} from "utils/ThemeUtil";
 import ImageUtil from "utils/ImageUtil";
 import colors from "configs/colors";
 import dimens from "configs/dimens";
+import StudentStore from "stores/StudentStore";
 
 const FormikInput = ({initialValues}) => {
     const validationSchema = yup.object({
@@ -54,7 +55,7 @@ const FormikInput = ({initialValues}) => {
     )
 }
 
-const PendingContent = ({defaultParam, onVerifyInput, onLogin}) => {
+const PendingContent = ({defaultParam, onVerifyInput, onLogin, onConfirm, studentInfo}) => {
 
     const {theme} = useTheme();
     const resetWalletPopupRef = useRef();
@@ -84,11 +85,10 @@ const PendingContent = ({defaultParam, onVerifyInput, onLogin}) => {
         <CBContainer>
             <CBView style={{flex: 1, paddingHorizontal: 30}} define={'none'}>
                 <CBHeader style={{backgroundColor: colors.backgroundColor, textAlign: 'left'}} title={renderTitle()} headerLeft={renderLeftButton()} headerRight={renderRightButton()}/>
-                <CBImage containerStyle={[appStyles.image, {alignSelf: 'center', marginTop: 120, width: moderateScale(240), height: moderateScale(240)}]} source={ImageUtil.getImage('pending')} resizeMode={'contain'}/>
-                <CBText style={[appStyles.text, {marginTop: 10, alignSelf: 'center'}]}>Thông tin của bạn đang được Admin xem xét và phê duyệt</CBText>
-                <CBTouchableOpacity style={{marginTop: 300, alignSelf: 'flex-end'}} onPress={onLogin}>
-                    <CBText>Về trang chủ</CBText>
-                </CBTouchableOpacity>
+                <CBImage containerStyle={[appStyles.image, {alignSelf: 'center', marginTop: 120, width: moderateScale(240), height: moderateScale(240)}]} source={studentInfo !== {} && studentInfo?.status === 'verified' ? ImageUtil.getImage('verified') : ImageUtil.getImage('pending')} resizeMode={'contain'}/>
+                {studentInfo === {} ? <CBText style={[appStyles.text, {marginTop: 10, alignSelf: 'center'}]}>Thông tin của bạn đang được Admin xem xét và phê duyệt</CBText> : null}
+                {studentInfo !== {} && studentInfo?.status === 'verified' ?  <CBButton buttonStyle={{ marginTop: 30, alignSelf: 'center', width: dimens.widthScreen / 2, borderWidth: 1}} title={'Về trang chủ'} onPress={onLogin}/>
+                : <CBButton buttonStyle={{ marginTop: 30, alignSelf: 'center', width: dimens.widthScreen / 2, borderWidth: 1}} title={'Cập nhật'} onPress={onConfirm}/> }
             </CBView>
 
         </CBContainer>
